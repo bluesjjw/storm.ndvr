@@ -1,0 +1,16 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
+  <classpathentry kind="output" path="classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.3/gson-2.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/wltea/analyzer/core/IKanalyzer/6.0/IKanalyzer-6.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar" sourcepath="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/lucene/lucene-core/3.6.2/lucene-core-3.6.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mongodb/mongo-java-driver/2.10.1/mongo-java-driver-2.10.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/storm/storm/0.8.2/storm-0.8.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/twitter4j/twitter4j-core/2.2.6/twitter4j-core-2.2.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6.jar"/>
+</classpath>
