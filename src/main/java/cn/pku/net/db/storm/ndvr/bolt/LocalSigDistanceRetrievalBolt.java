@@ -178,8 +178,8 @@ public class LocalSigDistanceRetrievalBolt extends BaseBasicBolt {
             .toJson(localSimilarVideoList);
         ctrlMsg.put("localSimilarVideoList", localSimilarVideoListStr);
         // 移除不必要的key
-        if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-          ctrlMsg = Const.CTRLMSG_CONFIG
+        if (Const.SSM_CONFIG.IS_REDUCTIION) {
+          ctrlMsg = Const.SSM_CONFIG
               .discardInvalidKey("LocalSigDistanceRetrievalBolt", ctrlMsg);
         }
         // bolt输出
@@ -284,8 +284,8 @@ public class LocalSigDistanceRetrievalBolt extends BaseBasicBolt {
       ctrlMsg.put("localSimilarVideoList", localSimilarVideoListStr);
       // logger.info("put localSimilarVideoList: " + localSimilarVideoListStr);
       // 移除不必要的key
-      if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-        ctrlMsg = Const.CTRLMSG_CONFIG
+      if (Const.SSM_CONFIG.IS_REDUCTIION) {
+        ctrlMsg = Const.SSM_CONFIG
             .discardInvalidKey("LocalSigDistanceRetrievalBolt", ctrlMsg);
       }
       // bolt输出

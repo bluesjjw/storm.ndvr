@@ -71,7 +71,7 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
             List<List<KDFeaturePoint>> keyPoints = new ArrayList<List<KDFeaturePoint>>();
             for (int i = 0; i < keyframeList.size(); i++) {
                 KeyFrameEntity keyframeEnt = keyframeList.get(i);
-                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_FILE_PATH_PREFIX
+                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
                                       + Integer.parseInt(keyframeEnt.getVideoId()) / 100 + "/"
                                       + keyframeEnt.getKeyFrameName();
                 try {
@@ -92,8 +92,8 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
             ctrlMsg.put("localSignature", keyPointsStr);
             //            logger.info("put localSignature: " + keyPointsStr);
       // 移除不必要的key
-            if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-                ctrlMsg = Const.CTRLMSG_CONFIG.discardInvalidKey("LocalFeatureRetrievalBolt",
+            if (Const.SSM_CONFIG.IS_REDUCTIION) {
+                ctrlMsg = Const.SSM_CONFIG.discardInvalidKey("LocalFeatureRetrievalBolt",
                     ctrlMsg);
             }
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
@@ -113,7 +113,7 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
             List<List<KDFeaturePoint>> keyPoints = new ArrayList<List<KDFeaturePoint>>();
             for (int i = 0; i < keyframeList.size(); i++) {
                 KeyFrameEntity keyframeEnt = keyframeList.get(i);
-                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_FILE_PATH_PREFIX
+                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
                                       + Integer.parseInt(keyframeEnt.getVideoId()) / 100 + "/"
                                       + keyframeEnt.getKeyFrameName();
                 try {
@@ -139,7 +139,7 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
             List<List<KDFeaturePoint>> keyPoints2 = new ArrayList<List<KDFeaturePoint>>();
             for (int i = 0; i < keyframeList2.size(); i++) {
                 KeyFrameEntity keyframeEnt2 = keyframeList2.get(i);
-                String keyframeFile2 = Const.CC_WEB_VIDEO.KEYFRAME_FILE_PATH_PREFIX
+                String keyframeFile2 = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
                                        + Integer.parseInt(keyframeEnt2.getVideoId()) / 100 + "\\"
                                        + keyframeEnt2.getKeyFrameName();
                 try {
@@ -187,7 +187,7 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
             List<List<KDFeaturePoint>> keyPoints1 = new ArrayList<List<KDFeaturePoint>>();
             List<List<KDFeaturePoint>> keyPoints2 = new ArrayList<List<KDFeaturePoint>>();
             for (KeyFrameEntity keyframeEnt : keyframeList1) {
-                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_FILE_PATH_PREFIX
+                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
                                       + Integer.parseInt(keyframeEnt.getVideoId()) / 100 + "\\"
                                       + keyframeEnt.getKeyFrameName();
                 BufferedImage img = ImageIO.read(new File(keyframeFile));
@@ -198,7 +198,7 @@ public class LocalFeatureRetrievalBolt extends BaseBasicBolt {
                 keyPoints1.add(al);
             }
             for (KeyFrameEntity keyframeEnt : keyframeList2) {
-                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_FILE_PATH_PREFIX
+                String keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
                                       + Integer.parseInt(keyframeEnt.getVideoId()) / 100 + "\\"
                                       + keyframeEnt.getKeyFrameName();
                 File file = new File(keyframeFile);

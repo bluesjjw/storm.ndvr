@@ -1,12 +1,12 @@
 /**
- * @Title: SIFTSigEntity.java 
- * @Package cn.pku.net.db.storm.ndvr.entity 
- * @Description: 一个帧图像的标签
- * @author Jiawei Jiang    
- * @date 2015年1月5日 上午10:12:27 
+ * @Package cn.pku.net.db.storm.ndvr.entity
+ * Created by jeremyjiang on 2016/5/12.
  * School of EECS, Peking University
- * Copyright (c) All Rights Reserved.
+ * Copyright (c) All Rights Reserved
  */
+
+
+
 package cn.pku.net.db.storm.ndvr.entity;
 
 import java.util.ArrayList;
@@ -15,25 +15,33 @@ import java.util.List;
 import cn.pku.net.db.storm.ndvr.image.analyze.sift.scale.KDFeaturePoint;
 
 /**
- * @ClassName: SIFTSigEntity 
- * @Description: 一个帧图像的标签
- * @author Jiawei Jiang
- * @date 2015年1月5日 上午10:12:27
+ * Description: SIFT signature entity
+ *
+ * @author jeremyjiang
+ * Created at 2016/5/12 18:45
  */
 public class SIFTSigEntity {
-
     private List<KDFeaturePoint> sig = new ArrayList<KDFeaturePoint>();
 
     /**
-     * @param sig
+     * Instantiates
+     *
+     * @param sig the sig
      */
     public SIFTSigEntity(List<KDFeaturePoint> sig) {
         this.sig = sig;
     }
 
     /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {}
+
+    /**
      * Getter method for property <tt>sig</tt>.
-     * 
+     *
      * @return property value of sig
      */
     public List<KDFeaturePoint> getSig() {
@@ -42,23 +50,13 @@ public class SIFTSigEntity {
 
     /**
      * Setter method for property <tt>sig</tt>.
-     * 
+     *
      * @param sig value to be assigned to property sig
      */
     public void setSig(List<KDFeaturePoint> sig) {
         this.sig = sig;
     }
-
-    /**
-     * @Title: main 
-     * @Description: TODO
-     * @param @param args     
-     * @return void   
-     * @throws 
-     * @param args
-     */
-    public static void main(String[] args) {
-
-    }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

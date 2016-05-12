@@ -232,8 +232,8 @@ public class TextSimilarityRetrievalBolt extends BaseBasicBolt {
             String textSimVideoListStr = (new Gson()).toJson(textSimilarVideoList);
             ctrlMsg.put("textSimilarVideoList", textSimVideoListStr);
             //移除不必要的key
-            if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-                ctrlMsg = Const.CTRLMSG_CONFIG.discardInvalidKey("TextSimilarityRetrievalBolt",
+            if (Const.SSM_CONFIG.IS_REDUCTIION) {
+                ctrlMsg = Const.SSM_CONFIG.discardInvalidKey("TextSimilarityRetrievalBolt",
                     ctrlMsg);
             }
             //bolt输出

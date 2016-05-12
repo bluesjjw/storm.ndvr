@@ -1,16 +1,11 @@
 /**
- * @Title: CustomizedTextGlobalRetrievalBolt.java 
- * @Package cn.pku.net.db.storm.ndvr.customized.text 
- * @Description: TODO
- * @author Jiawei Jiang    
- * @date 2015年2月2日 下午3:29:15 
+ * @Package cn.pku.net.db.storm.ndvr.customized
+ * Created by jeremyjiang on 2016/5/12.
  * School of EECS, Peking University
- * Copyright (c) All Rights Reserved.
+ * Copyright (c) All Rights Reserved
  */
 package cn.pku.net.db.storm.ndvr.customized;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +14,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import cn.pku.net.db.storm.ndvr.util.SigSim;
+import cn.pku.net.db.storm.ndvr.util.TextUtils;
 import org.apache.log4j.Logger;
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
@@ -29,7 +26,7 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import cn.pku.net.db.storm.ndvr.bolt.GlobalSigDistanceRetrievalBolt;
+import cn.pku.net.db.storm.ndvr.bolt.GlobalSigDistanceBolt;
 import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.dao.HSVSignatureDao;
 import cn.pku.net.db.storm.ndvr.dao.KeyFrameDao;
@@ -45,10 +42,9 @@ import cn.pku.net.db.storm.ndvr.util.GlobalSigGenerator;
 import com.google.gson.Gson;
 
 /**
- * @ClassName: CustomizedTextGlobalRetrievalBolt 
- * @Description: TODO
- * @author Jiawei Jiang
- * @date 2015年2月2日 下午3:29:15
+ * Description: Customized bolt for retrieval task, generate and compare textual and global visual signature
+ * @author jeremyjiang
+ * Created at 2016/5/12 20:46
  */
 public class CustomizedTextGlobalRetrievalBolt extends BaseBasicBolt {
 
@@ -116,8 +112,8 @@ public class CustomizedTextGlobalRetrievalBolt extends BaseBasicBolt {
                 continue;
             }
 
-            List<String> querySplitText = getSplitText(queryVideoText);
-            List<String> comparedSplitText = getSplitText(comparedVideoText);
+            List<String> querySplitText = TextUtils.getSplitText(queryVideoText);
+            List<String> comparedSplitText = TextUtils.getSplitText(comparedVideoText);
 
             //如果query或者compare视频分词结果为空,则继续比较下个视频
             if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {
@@ -240,7 +236,7 @@ public class CustomizedTextGlobalRetrievalBolt extends BaseBasicBolt {
                 comparedVideoHsvSig = new VideoHSVSigEntity(comparedVideoId,
                     cachedHSVSignature.get(comparedVideoId));
             }
-            float euclideanDistance = GlobalSigDistanceRetrievalBolt.getGlobalDistance(
+            float euclideanDistance = SigSim.getGlobalDistance(
                 queryVideoHsvSig.getSig(), comparedVideoHsvSig.getSig());
             //            logger.info("EuclideanDistance: " + euclideanDistance + ", queryVideoId: "
             //                        + queryVideo.getVideoId() + ", comparedVideoId: " + comparedVideoId);
@@ -269,33 +265,6 @@ public class CustomizedTextGlobalRetrievalBolt extends BaseBasicBolt {
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("taskId", "taskType", "queryVideo", "similarVideoList",
             "startTimeStamp", "fieldGroupingId"));
-    }
-
-    public static List<String> getSplitText(String text) {
-        List<String> splitText = new ArrayList<String>();
-        StringReader sr = new StringReader(text);
-        IKSegmenter ik = new IKSegmenter(sr, true);
-        Lexeme lex = null;
-        try {
-            while ((lex = ik.next()) != null) {
-                splitText.add(lex.getLexemeText());
-            }
-        } catch (IOException e) {
-            logger.error("IO error when use IKanalyzer. ", e);
-        }
-        return splitText;
-    }
-
-    /**
-     * @Title: main 
-     * @Description: TODO
-     * @param @param args     
-     * @return void   
-     * @throws 
-     * @param args
-     */
-    public static void main(String[] args) {
-
     }
 
 }

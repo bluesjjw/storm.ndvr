@@ -1,19 +1,16 @@
 /**
- * @Title: HSVSigEntity.java 
- * @Package cn.pku.net.db.storm.ndvr.entity 
- * @Description: TODO
- * @author Jiawei Jiang    
- * @date 2014年10月24日 下午3:34:54 
+ * @Package cn.pku.net.db.storm.ndvr.entity
+ * Created by jeremyjiang on 2016/5/12.
  * School of EECS, Peking University
- * Copyright (c) All Rights Reserved.
+ * Copyright (c) All Rights Reserved
  */
 package cn.pku.net.db.storm.ndvr.entity;
 
 /**
- * @ClassName: HSVSigEntity
- * @Description: TODO
- * @author Jiawei Jiang
- * @date 2014年10月24日 下午3:34:54
+ * Description: HSV signature, 24 bins
+ *
+ * @author jeremyjiang
+ * Created at 2016/5/12 18:39
  */
 public class HSVSigEntity {
 
@@ -42,6 +39,11 @@ public class HSVSigEntity {
     private float bin23;
     private float bin24;
 
+    /**
+     * Instantiates a new Hsv sig entity.
+     *
+     * @param lines the lines
+     */
     public HSVSigEntity(String[] lines) {
         super();
         this.bin1 = Float.valueOf(lines[1]);
@@ -71,7 +73,9 @@ public class HSVSigEntity {
     }
 
     /**
-     * @param hsvSignature
+     * Instantiates a new Hsv sig entity.
+     *
+     * @param hsvSignature the hsv signature
      */
     public HSVSigEntity(float[] hsvSignature) {
         super();
@@ -103,7 +107,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin1</tt>.
-     * 
+     *
      * @return property value of bin1
      */
     public float getBin1() {
@@ -112,7 +116,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin1</tt>.
-     * 
+     *
      * @param bin1 value to be assigned to property bin1
      */
     public void setBin1(float bin1) {
@@ -121,7 +125,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin2</tt>.
-     * 
+     *
      * @return property value of bin2
      */
     public float getBin2() {
@@ -130,7 +134,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin2</tt>.
-     * 
+     *
      * @param bin2 value to be assigned to property bin2
      */
     public void setBin2(float bin2) {
@@ -139,7 +143,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin3</tt>.
-     * 
+     *
      * @return property value of bin3
      */
     public float getBin3() {
@@ -148,7 +152,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin3</tt>.
-     * 
+     *
      * @param bin3 value to be assigned to property bin3
      */
     public void setBin3(float bin3) {
@@ -157,7 +161,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin4</tt>.
-     * 
+     *
      * @return property value of bin4
      */
     public float getBin4() {
@@ -166,7 +170,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin4</tt>.
-     * 
+     *
      * @param bin4 value to be assigned to property bin4
      */
     public void setBin4(float bin4) {
@@ -175,7 +179,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin5</tt>.
-     * 
+     *
      * @return property value of bin5
      */
     public float getBin5() {
@@ -184,7 +188,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin5</tt>.
-     * 
+     *
      * @param bin5 value to be assigned to property bin5
      */
     public void setBin5(float bin5) {
@@ -193,7 +197,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin6</tt>.
-     * 
+     *
      * @return property value of bin6
      */
     public float getBin6() {
@@ -202,7 +206,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin6</tt>.
-     * 
+     *
      * @param bin6 value to be assigned to property bin6
      */
     public void setBin6(float bin6) {
@@ -211,7 +215,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin7</tt>.
-     * 
+     *
      * @return property value of bin7
      */
     public float getBin7() {
@@ -220,7 +224,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin7</tt>.
-     * 
+     *
      * @param bin7 value to be assigned to property bin7
      */
     public void setBin7(float bin7) {
@@ -229,7 +233,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin8</tt>.
-     * 
+     *
      * @return property value of bin8
      */
     public float getBin8() {
@@ -238,7 +242,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin8</tt>.
-     * 
+     *
      * @param bin8 value to be assigned to property bin8
      */
     public void setBin8(float bin8) {
@@ -247,7 +251,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin9</tt>.
-     * 
+     *
      * @return property value of bin9
      */
     public float getBin9() {
@@ -256,7 +260,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin9</tt>.
-     * 
+     *
      * @param bin9 value to be assigned to property bin9
      */
     public void setBin9(float bin9) {
@@ -265,7 +269,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin10</tt>.
-     * 
+     *
      * @return property value of bin10
      */
     public float getBin10() {
@@ -274,7 +278,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin10</tt>.
-     * 
+     *
      * @param bin10 value to be assigned to property bin10
      */
     public void setBin10(float bin10) {
@@ -283,7 +287,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin11</tt>.
-     * 
+     *
      * @return property value of bin11
      */
     public float getBin11() {
@@ -292,7 +296,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin11</tt>.
-     * 
+     *
      * @param bin11 value to be assigned to property bin11
      */
     public void setBin11(float bin11) {
@@ -301,7 +305,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin12</tt>.
-     * 
+     *
      * @return property value of bin12
      */
     public float getBin12() {
@@ -310,7 +314,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin12</tt>.
-     * 
+     *
      * @param bin12 value to be assigned to property bin12
      */
     public void setBin12(float bin12) {
@@ -319,7 +323,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin13</tt>.
-     * 
+     *
      * @return property value of bin13
      */
     public float getBin13() {
@@ -328,7 +332,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin13</tt>.
-     * 
+     *
      * @param bin13 value to be assigned to property bin13
      */
     public void setBin13(float bin13) {
@@ -337,7 +341,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin14</tt>.
-     * 
+     *
      * @return property value of bin14
      */
     public float getBin14() {
@@ -346,7 +350,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin14</tt>.
-     * 
+     *
      * @param bin14 value to be assigned to property bin14
      */
     public void setBin14(float bin14) {
@@ -355,7 +359,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin15</tt>.
-     * 
+     *
      * @return property value of bin15
      */
     public float getBin15() {
@@ -364,7 +368,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin15</tt>.
-     * 
+     *
      * @param bin15 value to be assigned to property bin15
      */
     public void setBin15(float bin15) {
@@ -373,7 +377,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin16</tt>.
-     * 
+     *
      * @return property value of bin16
      */
     public float getBin16() {
@@ -382,7 +386,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin16</tt>.
-     * 
+     *
      * @param bin16 value to be assigned to property bin16
      */
     public void setBin16(float bin16) {
@@ -391,7 +395,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin17</tt>.
-     * 
+     *
      * @return property value of bin17
      */
     public float getBin17() {
@@ -400,7 +404,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin17</tt>.
-     * 
+     *
      * @param bin17 value to be assigned to property bin17
      */
     public void setBin17(float bin17) {
@@ -409,7 +413,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin18</tt>.
-     * 
+     *
      * @return property value of bin18
      */
     public float getBin18() {
@@ -418,7 +422,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin18</tt>.
-     * 
+     *
      * @param bin18 value to be assigned to property bin18
      */
     public void setBin18(float bin18) {
@@ -427,7 +431,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin19</tt>.
-     * 
+     *
      * @return property value of bin19
      */
     public float getBin19() {
@@ -436,7 +440,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin19</tt>.
-     * 
+     *
      * @param bin19 value to be assigned to property bin19
      */
     public void setBin19(float bin19) {
@@ -445,7 +449,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin20</tt>.
-     * 
+     *
      * @return property value of bin20
      */
     public float getBin20() {
@@ -454,7 +458,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin20</tt>.
-     * 
+     *
      * @param bin20 value to be assigned to property bin20
      */
     public void setBin20(float bin20) {
@@ -463,7 +467,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin21</tt>.
-     * 
+     *
      * @return property value of bin21
      */
     public float getBin21() {
@@ -472,7 +476,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin21</tt>.
-     * 
+     *
      * @param bin21 value to be assigned to property bin21
      */
     public void setBin21(float bin21) {
@@ -481,7 +485,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin22</tt>.
-     * 
+     *
      * @return property value of bin22
      */
     public float getBin22() {
@@ -490,7 +494,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin22</tt>.
-     * 
+     *
      * @param bin22 value to be assigned to property bin22
      */
     public void setBin22(float bin22) {
@@ -499,7 +503,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin23</tt>.
-     * 
+     *
      * @return property value of bin23
      */
     public float getBin23() {
@@ -508,7 +512,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin23</tt>.
-     * 
+     *
      * @param bin23 value to be assigned to property bin23
      */
     public void setBin23(float bin23) {
@@ -517,7 +521,7 @@ public class HSVSigEntity {
 
     /**
      * Getter method for property <tt>bin24</tt>.
-     * 
+     *
      * @return property value of bin24
      */
     public float getBin24() {
@@ -526,7 +530,7 @@ public class HSVSigEntity {
 
     /**
      * Setter method for property <tt>bin24</tt>.
-     * 
+     *
      * @param bin24 value to be assigned to property bin24
      */
     public void setBin24(float bin24) {

@@ -1,11 +1,8 @@
 /**
- * @Title: GlobalFeatureBolt.java 
- * @Package cn.pku.net.db.storm.ndvr.bolt 
- * @Description: TODO
- * @author Jiawei Jiang    
- * @date 2014年12月27日 下午10:15:07 
+ * @Package cn.pku.net.db.storm.ndvr.bolt
+ * Created by jeremyjiang on 2016/5/12.
  * School of EECS, Peking University
- * Copyright (c) All Rights Reserved.
+ * Copyright (c) All Rights Reserved
  */
 package cn.pku.net.db.storm.ndvr.bolt;
 
@@ -32,21 +29,25 @@ import cn.pku.net.db.storm.ndvr.util.GlobalSigGenerator;
 import com.google.gson.Gson;
 
 /**
- * @ClassName: GlobalFeatureBolt 
- * @Description: TODO
- * @author Jiawei Jiang
- * @date 2014年12月27日 下午10:15:07
+ * Description: General bolt, generate global visual signature
+ *
+ * @author jeremyjiang
+ * Created at 2016/5/12 20:55
  */
-public class GlobalFeatureRetrievalBolt extends BaseBasicBolt {
+public class GlobalFeatureBolt extends BaseBasicBolt {
 
     private static final Logger logger           = Logger
-                                                     .getLogger(GlobalFeatureRetrievalBolt.class);
+                                                     .getLogger(GlobalFeatureBolt.class);
 
     /**  */
     private static final long   serialVersionUID = 6884596935773190L;
 
-    /** 
-     * @see backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple, backtype.storm.topology.BasicOutputCollector)
+    /**
+     * Execute.
+     *
+     * @param input     the input
+     * @param collector the collector
+     * @see backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple, backtype.storm.topology.BasicOutputCollector) backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple, backtype.storm.topology.BasicOutputCollector)
      */
     public void execute(Tuple input, BasicOutputCollector collector) {
         String taskId = input.getStringByField("taskId");
@@ -66,8 +67,8 @@ public class GlobalFeatureRetrievalBolt extends BaseBasicBolt {
                 //在控制信息中加入新字段
                 ctrlMsg.put("globalSignature", null);
                 //移除不必要的key
-                if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-                    ctrlMsg = Const.CTRLMSG_CONFIG.discardInvalidKey("GlobalFeatureRetrievalBolt",
+                if (Const.SSM_CONFIG.IS_REDUCTIION) {
+                    ctrlMsg = Const.SSM_CONFIG.discardInvalidKey("GlobalFeatureBolt",
                         ctrlMsg);
                 }
                 //以duration做fieldGrouping,一个bolt负责的时长范围为Const.STORM_CONFIG.BOLT_DURATION_WINDOW
@@ -84,8 +85,8 @@ public class GlobalFeatureRetrievalBolt extends BaseBasicBolt {
             //在控制信息中加入新字段
             ctrlMsg.put("globalSignature", newGsonStr);
             //移除不必要的key
-            if (Const.CTRLMSG_CONFIG.IS_REDUCTIION) {
-                ctrlMsg = Const.CTRLMSG_CONFIG.discardInvalidKey("GlobalFeatureRetrievalBolt",
+            if (Const.SSM_CONFIG.IS_REDUCTIION) {
+                ctrlMsg = Const.SSM_CONFIG.discardInvalidKey("GlobalFeatureBolt",
                     ctrlMsg);
             }
             //以duration做fieldGrouping,一个bolt负责的时长范围为Const.STORM_CONFIG.BOLT_DURATION_WINDOW
@@ -172,20 +173,20 @@ public class GlobalFeatureRetrievalBolt extends BaseBasicBolt {
         }
     }
 
-    /** 
-     * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
+    /**
+     * Declare output fields.
+     *
+     * @param declarer the declarer
+     * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("taskId", "taskType", "fieldGroupingId", "ctrlMsg"));
     }
 
     /**
-     * @Title: main 
-     * @Description: TODO
-     * @param @param args     
-     * @return void   
-     * @throws 
-     * @param args
+     * The entry point of application.
+     *
+     * @param args the input arguments
      */
     public static void main(String[] args) {
         List<KeyFrameEntity> keyframeList = (new KeyFrameDao()).getKeyFrameByVideoId("1");
