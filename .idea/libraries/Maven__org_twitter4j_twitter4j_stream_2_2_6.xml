@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.twitter4j:twitter4j-stream:2.2.6">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.m2/repository/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.m2/repository/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.m2/repository/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-stream/2.2.6/twitter4j-stream-2.2.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

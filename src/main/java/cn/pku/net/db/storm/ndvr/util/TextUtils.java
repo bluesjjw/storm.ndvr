@@ -10,6 +10,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.w3c.dom.Text;
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 
@@ -21,6 +23,8 @@ import org.wltea.analyzer.core.Lexeme;
  */
 
 public class TextUtils {
+
+    private static final Logger logger = Logger.getLogger(TextUtils.class);
 
     /**
      * Word segmentation

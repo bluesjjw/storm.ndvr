@@ -26,7 +26,6 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import cn.pku.net.db.storm.ndvr.bolt.GlobalSigDistanceBolt;
 import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.dao.HSVSignatureDao;
 import cn.pku.net.db.storm.ndvr.dao.KeyFrameDao;

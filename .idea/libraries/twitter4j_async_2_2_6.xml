@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="twitter4j-async-2.2.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/twitter4j-2.2.6 dependency/twitter4j-async-2.2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/twitter4j-2.2.6 dependency/twitter4j-core-2.2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/twitter4j-2.2.6 dependency/twitter4j-examples-2.2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/twitter4j-2.2.6 dependency/twitter4j-media-support-2.2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/twitter4j-2.2.6 dependency/twitter4j-stream-2.2.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

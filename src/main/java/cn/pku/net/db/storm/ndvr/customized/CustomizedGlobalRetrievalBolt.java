@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import cn.pku.net.db.storm.ndvr.bolt.GlobalSigDistanceBolt;
 import cn.pku.net.db.storm.ndvr.util.SigSim;
 import org.apache.log4j.Logger;
 

@@ -107,26 +107,26 @@ public class Const {
             COMPONENT_NEW_KEY.put("GlobalFeatureBolt", "keyframeList||globalSignature");
             COMPONENT_KEY_NEEDED.put("GlobalSigDistanceBolt", "queryVideo||globalSignature");
             COMPONENT_NEW_KEY.put("GlobalSigDistanceBolt", "globalSimilarVideoList");
-            COMPONENT_KEY_NEEDED.put("LocalFeatureRetrievalBolt", "queryVideo||keyframeList");
-            COMPONENT_NEW_KEY.put("LocalFeatureRetrievalBolt", "localSignature");
-            COMPONENT_KEY_NEEDED.put("LocalSigDistanceRetrievalBolt", "queryVideo||localSignature");
-            COMPONENT_NEW_KEY.put("LocalSigDistanceRetrievalBolt", "localSimilarVideoList");
-            COMPONENT_KEY_NEEDED.put("TextSimilarityRetrievalBolt", "queryVideo");
-            COMPONENT_NEW_KEY.put("TextSimilarityRetrievalBolt", "textSimilarVideoList");
+            COMPONENT_KEY_NEEDED.put("LocalFeatureBolt", "queryVideo||keyframeList");
+            COMPONENT_NEW_KEY.put("LocalFeatureBolt", "localSignature");
+            COMPONENT_KEY_NEEDED.put("LocalSigDistanceBolt", "queryVideo||localSignature");
+            COMPONENT_NEW_KEY.put("LocalSigDistanceBolt", "localSimilarVideoList");
+            COMPONENT_KEY_NEEDED.put("TextSimilarityBolt", "queryVideo");
+            COMPONENT_NEW_KEY.put("TextSimilarityBolt", "textSimilarVideoList");
 
             // global
             COMPONENT_DISCARD_KEY.put("GlobalSigDistanceBolt", "queryVideo,keyframeList,globalSignature");
 
             // global+local
-            // COMPONENT_DISCARD_KEY.put("LocalSigDistanceRetrievalBolt",
+            // COMPONENT_DISCARD_KEY.put("LocalSigDistanceBolt",
             // "queryVideo,globalSimilarVideoList,localSignature");
-            // COMPONENT_DISCARD_KEY.put("LocalFeatureRetrievalBolt", "keyframeList");
+            // COMPONENT_DISCARD_KEY.put("LocalFeatureBolt", "keyframeList");
             // COMPONENT_DISCARD_KEY.put("GlobalSigDistanceBolt", "globalSignature");
             // text+global
             // COMPONENT_DISCARD_KEY.put("GlobalSigDistanceBolt",
             // "queryVideo,keyframeList,globalSignature,textSimilarVideoList");
             // text
-            // COMPONENT_DISCARD_KEY.put("TextSimilarityRetrievalBolt", "queryVideo");
+            // COMPONENT_DISCARD_KEY.put("TextSimilarityBolt", "queryVideo");
         }
 
         /**

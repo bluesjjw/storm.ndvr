@@ -3,7 +3,7 @@
 
   <groupId>cn.pku.net.db</groupId>
   <artifactId>storm.ndvr</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
   <name>storm.ndvr</name>
@@ -85,11 +85,11 @@
 	<build>
 		<resources>
 		  	<resource>
-				<directory>src\main\resources</directory>
+				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-		<sourceDirectory>src\main\java</sourceDirectory>
-		<testSourceDirectory>src\test\java</testSourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<outputDirectory>classes</outputDirectory>
 		<testOutputDirectory>target\test-classes</testOutputDirectory>
 

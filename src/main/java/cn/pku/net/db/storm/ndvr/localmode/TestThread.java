@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import cn.pku.net.db.storm.ndvr.general.TextSimilarityBolt;
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 
@@ -28,7 +29,6 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import cn.pku.net.db.storm.ndvr.bolt.TextSimilarityRetrievalBolt;
 import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.dao.HSVSignatureDao;
 import cn.pku.net.db.storm.ndvr.dao.TaskResultDao;
@@ -235,8 +235,8 @@ public class TestThread implements Runnable {
                 }
 
                 // logger.info("Compare " + queryVideoText + " with " + comparedVideoText);
-                List<String> querySplitText    = TextSimilarityRetrievalBolt.getSplitText(queryVideoText);
-                List<String> comparedSplitText = TextSimilarityRetrievalBolt.getSplitText(comparedVideoText);
+                List<String> querySplitText    = TextSimilarityBolt.getSplitText(queryVideoText);
+                List<String> comparedSplitText = TextSimilarityBolt.getSplitText(comparedVideoText);
 
                 // 如果query或者compare视频分词结果为空,则继续比较下个视频
                 if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {
@@ -346,8 +346,8 @@ public class TestThread implements Runnable {
                 return;
             }
 
-            List<String> querySplitText  = TextSimilarityRetrievalBolt.getSplitText(queryVideoText);
-            List<String> query2SplitText = TextSimilarityRetrievalBolt.getSplitText(queryVideoText2);
+            List<String> querySplitText  = TextSimilarityBolt.getSplitText(queryVideoText);
+            List<String> query2SplitText = TextSimilarityBolt.getSplitText(queryVideoText2);
 
             // 如果两个query视频分词结果为空,则文本相似度设为0,
             if (querySplitText.isEmpty() || query2SplitText.isEmpty()) {
