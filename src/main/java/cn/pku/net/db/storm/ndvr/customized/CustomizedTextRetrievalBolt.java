@@ -9,9 +9,6 @@
 
 package cn.pku.net.db.storm.ndvr.customized;
 
-import java.io.IOException;
-import java.io.StringReader;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,9 +16,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
 
 import com.google.gson.Gson;
 
@@ -36,7 +30,7 @@ import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.dao.VideoInfoDao;
 import cn.pku.net.db.storm.ndvr.entity.TextSimilarVideo;
 import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
-import cn.pku.net.db.storm.ndvr.util.TextUtils;
+import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
 
 /**
  * Description: Customized bolt for retrieval task, generate and compare the textual signature
@@ -131,8 +125,8 @@ public class CustomizedTextRetrievalBolt extends BaseBasicBolt {
                 continue;
             }
 
-            List<String> querySplitText    = TextUtils.getSplitText(queryVideoText);
-            List<String> comparedSplitText = TextUtils.getSplitText(comparedVideoText);
+            List<String> querySplitText    = MyStringUtils.wordSegment(queryVideoText);
+            List<String> comparedSplitText = MyStringUtils.wordSegment(comparedVideoText);
 
             // 如果query或者compare视频分词结果为空,则继续比较下个视频
             if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {

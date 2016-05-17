@@ -131,7 +131,6 @@ public class LocalSigDistanceBolt extends BaseBasicBolt {
                     comparedVideoIdSet.add(textSimilarVideo.getVideoId());
                 }
             }
-
             // 如果不采用filter-and-refine的策略,则根据视频时长选取合适的视频
             else {
 

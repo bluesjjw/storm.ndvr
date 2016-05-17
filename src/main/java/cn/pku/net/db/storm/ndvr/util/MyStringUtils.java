@@ -5,15 +5,16 @@
  */
 package cn.pku.net.db.storm.ndvr.util;
 
+import org.apache.log4j.Logger;
+import org.wltea.analyzer.core.IKSegmenter;
+import org.wltea.analyzer.core.Lexeme;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.w3c.dom.Text;
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
+import java.util.Set;
 
 /**
  * Description:
@@ -22,9 +23,9 @@ import org.wltea.analyzer.core.Lexeme;
  * Created at 2016/5/12 20:40
  */
 
-public class TextUtils {
+public class MyStringUtils {
 
-    private static final Logger logger = Logger.getLogger(TextUtils.class);
+    private static final Logger logger = Logger.getLogger(MyStringUtils.class);
 
     /**
      * Word segmentation
@@ -32,7 +33,7 @@ public class TextUtils {
      * @param text the text
      * @return the split text
      */
-    public static List<String> getSplitText(String text) {
+    public static List<String> wordSegment(String text) {
         List<String> splitText = new ArrayList<String>();
         StringReader sr        = new StringReader(text);
         IKSegmenter  ik        = new IKSegmenter(sr, true);
@@ -47,5 +48,13 @@ public class TextUtils {
         }
 
         return splitText;
+    }
+
+    public static Set<String> arrayToHashSet(String[] strArr){
+        Set<String> result = new HashSet<String>();
+        for (String str: strArr) {
+            result.add(str);
+        }
+        return result;
     }
 }

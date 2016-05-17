@@ -15,10 +15,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import cn.pku.net.db.storm.ndvr.util.SigSim;
-import cn.pku.net.db.storm.ndvr.util.TextUtils;
+import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
 import org.apache.log4j.Logger;
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
 
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -111,8 +109,8 @@ public class CustomizedTextGlobalRetrievalBolt extends BaseBasicBolt {
                 continue;
             }
 
-            List<String> querySplitText = TextUtils.getSplitText(queryVideoText);
-            List<String> comparedSplitText = TextUtils.getSplitText(comparedVideoText);
+            List<String> querySplitText = MyStringUtils.wordSegment(queryVideoText);
+            List<String> comparedSplitText = MyStringUtils.wordSegment(comparedVideoText);
 
             //如果query或者compare视频分词结果为空,则继续比较下个视频
             if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {

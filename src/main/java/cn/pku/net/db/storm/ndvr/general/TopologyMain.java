@@ -50,7 +50,7 @@ public class TopologyMain {
                .fieldsGrouping("globalFeature", new Fields("fieldGroupingId"));
         builder.setBolt("localFeature", new LocalFeatureBolt(), 100).shuffleGrouping("globalDistance");
         builder.setBolt("localDistance", new LocalSigDistanceBolt(), 100).shuffleGrouping("localFeature");
-        builder.setBolt("result", new Algorithm3ResultBolt(), 20).shuffleGrouping("localDistance");
+        builder.setBolt("result", new App5ResultBolt(), 20).shuffleGrouping("localDistance");
 
         Config conf = new Config();
 

@@ -9,16 +9,9 @@
 
 package cn.pku.net.db.storm.ndvr.customized;
 
-import java.io.IOException;
-import java.io.StringReader;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
 
 import com.google.gson.Gson;
 
@@ -31,7 +24,7 @@ import backtype.storm.tuple.Values;
 
 import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
-import cn.pku.net.db.storm.ndvr.util.TextUtils;
+import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
 
 /**
  * Description: Customized bolt for detection task, generate and compare textual signature of two videos
@@ -93,8 +86,8 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
             return;
         }
 
-        List<String> querySplitText1 = TextUtils.getSplitText(queryVideoText1);
-        List<String> querySplitText2 = TextUtils.getSplitText(queryVideoText2);
+        List<String> querySplitText1 = MyStringUtils.wordSegment(queryVideoText1);
+        List<String> querySplitText2 = MyStringUtils.wordSegment(queryVideoText2);
 
         // 如果两个query视频分词结果为空,则文本相似度设为0,输出tuple
         if (querySplitText1.isEmpty() || querySplitText2.isEmpty()) {

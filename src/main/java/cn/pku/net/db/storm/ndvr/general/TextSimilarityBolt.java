@@ -48,6 +48,7 @@ import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
  * Created at 2016/5/13 9:45
  */
 public class TextSimilarityBolt extends BaseBasicBolt {
+
     private static final Logger       logger                  = Logger.getLogger(TextSimilarityBolt.class);
     private Map<Integer, Set<String>> cachedVideoIdByDuration = new ConcurrentHashMap<Integer, Set<String>>();    // 缓存视频数据,key为duration,value为视频元数据
     private Map<String, String> cachedVideoText = new ConcurrentHashMap<String, String>();    // 缓存视频数据,key为视频id,value为视频文本信息
