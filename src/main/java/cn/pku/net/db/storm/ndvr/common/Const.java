@@ -97,7 +97,7 @@ public class Const {
          * Component names in the Storm topology
          */
         public static String[] TOPOLOGY_COMPONENT = { "GetTaskSpout", "GlobalFeatureBolt", "GlobalSigDistance",
-                                                      "App4ResultBolt" };
+                                                      "GlobalResultBolt" };
         public static Map<String, String> COMPONENT_KEY_NEEDED = new HashMap<String, String>();    // fields needed by each component
         public static Map<String, String> COMPONENT_NEW_KEY = new HashMap<String, String>();    // fields produced by each component
         public static Map<String, String> COMPONENT_DISCARD_KEY = new HashMap<String, String>();    // fields should discarded by each component

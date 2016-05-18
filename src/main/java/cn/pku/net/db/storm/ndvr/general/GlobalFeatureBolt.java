@@ -36,11 +36,17 @@ import com.google.gson.Gson;
  */
 public class GlobalFeatureBolt extends BaseBasicBolt {
 
-    private static final Logger logger           = Logger
-                                                     .getLogger(GlobalFeatureBolt.class);
+    private static final Logger logger           = Logger.getLogger(GlobalFeatureBolt.class);
 
-    /**  */
-    private static final long   serialVersionUID = 6884596935773190L;
+    /**
+     * Declare output fields.
+     *
+     * @param declarer the declarer
+     * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
+     */
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
+        declarer.declare(new Fields("taskId", "taskType", "fieldGroupingId", "ctrlMsg"));
+    }
 
     /**
      * Execute.
@@ -171,16 +177,6 @@ public class GlobalFeatureBolt extends BaseBasicBolt {
             //控制fieldGrouping,一个bolt负责一个时间段的视频,detection任务其实不需要fieldGrouping
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
         }
-    }
-
-    /**
-     * Declare output fields.
-     *
-     * @param declarer the declarer
-     * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
-     */
-    public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId", "taskType", "fieldGroupingId", "ctrlMsg"));
     }
 
     /**

@@ -211,7 +211,7 @@ public class GlobalSigDistanceBolt extends BaseBasicBolt {
                                                                 cachedHSVSignature.get(comparedVideoId));
                 }
 
-                float euclideanDistance = SigSim.getGlobalDistance(queryVideoHsvSig.getSig(),
+                float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(),
                                                                    comparedVideoHsvSig.getSig());
 
                 // logger.info("euclideanDistance: " + euclideanDistance + ", queryVideoId: "
@@ -283,7 +283,7 @@ public class GlobalSigDistanceBolt extends BaseBasicBolt {
             }
 
             // 计算全局标签距离
-            float euclideanDistance = SigSim.getGlobalDistance(queryVideoHsvSig.getSig(), queryVideoHsvSig2.getSig());
+            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(), queryVideoHsvSig2.getSig());
 
             ctrlMsg.put("globalDistance", Float.toString(euclideanDistance));
 

@@ -23,7 +23,7 @@ public class SigSim {
      * @param comparedHSVSig the compared hsv sig
      * @return the global distance
      */
-    public static float getGlobalDistance(HSVSigEntity queryHSVSig, HSVSigEntity comparedHSVSig) {
+    public static float getEuclideanDistance(HSVSigEntity queryHSVSig, HSVSigEntity comparedHSVSig) {
         if ((null == queryHSVSig) || (null == comparedHSVSig)) {
             return (float) 100.0;
         }

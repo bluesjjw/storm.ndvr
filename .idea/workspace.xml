@@ -2,75 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5e3df04-614e-4a03-9a4a-02ca40d60315" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__backtype_jzmq_2_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__clj_time_clj_time_0_4_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__clout_clout_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_esotericsoftware_kryo_kryo_2_17.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_esotericsoftware_minlog_minlog_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_esotericsoftware_reflectasm_reflectasm_shaded_1_07.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_13_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_disruptor_disruptor_2_10_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_curator_curator_client_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_curator_curator_framework_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_1_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__compojure_compojure_1_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__hiccup_hiccup_0_3_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jline_jline_0_9_94.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_exec_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_zookeeper_zookeeper_3_3_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_clojure_clojure_1_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_clojure_core_incubator_0_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_clojure_math_numeric_tower_0_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_clojure_tools_logging_0_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_clojure_tools_macro_0_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mortbay_jetty_jetty_6_1_26.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mortbay_jetty_jetty_util_6_1_26.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mortbay_jetty_servlet_api_2_5_20081211.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_5_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_5_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ring_ring_core_1_1_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ring_ring_jetty_adapter_0_3_11.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ring_ring_servlet_0_3_11.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__storm_carbonite_1_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__storm_jgrapht_0_8_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__storm_libthrift7_0_7_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__storm_tools_cli_0_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/StreamSharedMessage.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_storm_libthrift7_0_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/spout/GetTaskSpout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/util/TextUtils.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.class" afterPath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.class" afterPath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.class" afterPath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/general/TopologyMain.class" afterPath="$PROJECT_DIR$/classes/cn/pku/net/db/storm/ndvr/general/TopologyMain.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt1.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/Test.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/common/Const.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/common/Const.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalSigDistanceBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalSigDistanceBolt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextSimilarityBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextSimilarityBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTopologyMain.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTopologyMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalSigDistanceBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalSigDistanceBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/StreamSharedMessage.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/StreamSharedMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TopologyMain.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TopologyMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storm.ndvr.iml" afterPath="$PROJECT_DIR$/storm.ndvr.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm1ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm2ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App1ResultBolt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm3ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm4ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/SharedStreamMessage.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App2ResultBolt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/TextUtils.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/MyStringUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedDetectionSpout.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusDetecSpout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalResult.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt1.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt1.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt2.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt2.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalResult.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedRetrievalSpout.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusRetriSpout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionResult.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalResult.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalResult.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App1ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextResultBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App2ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPostResultBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalResultBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPreResultBolt.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalLocalPreResultBolt.java" />
     </list>
     <ignored path="storm.ndvr.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,111 +54,91 @@
     <favorites_list name="storm.ndvr" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.58862877">
+    <splitter split-orientation="vertical" split-proportion="0.6008919">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="App6ResultBolt.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java">
+          <file leaf-file-name="CusTextGlobalPostDetecBolt2.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="422">
-                  <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+                <state relative-caret-position="908">
+                  <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
                   <folding>
-                    <element signature="n#!!doc" expanded="true" />
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1350#1372#0" expanded="true" />
-                    <element signature="e#1483#1500#0" expanded="true" />
-                    <element signature="e#1610#1627#0" expanded="true" />
-                    <element signature="e#1736#1750#0" expanded="true" />
+                    <element signature="e#1469#1491#0" expanded="true" />
+                    <element signature="e#1620#1642#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LocalSigDistanceBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalSigDistanceBolt.java">
+          <file leaf-file-name="CusDetecSpout.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusDetecSpout.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="228">
-                  <caret line="359" column="51" selection-start-line="359" selection-start-column="51" selection-end-line="359" selection-end-column="51" />
+                <state relative-caret-position="373">
+                  <caret line="85" column="104" selection-start-line="85" selection-start-column="104" selection-end-line="85" selection-end-column="104" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CusTextGlobalPostDetecResult.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecResult.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="266">
+                  <caret line="113" column="39" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="39" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1119#1141#0" expanded="true" />
+                    <element signature="e#1252#1269#0" expanded="true" />
+                    <element signature="e#1379#1396#0" expanded="true" />
+                    <element signature="e#1505#1519#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CusTextGlobalPreRetriResult.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriResult.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="627">
+                  <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TextSimilarityBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextSimilarityBolt.java">
+          <file leaf-file-name="CusGlobalLocalPreRetriBolt.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriBolt.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="293" column="43" selection-start-line="293" selection-start-column="29" selection-end-line="293" selection-end-column="43" />
+                <state relative-caret-position="570">
+                  <caret line="160" column="9" selection-start-line="160" selection-start-column="9" selection-end-line="160" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="App4ResultBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java">
+          <file leaf-file-name="CusTextDetecBolt.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecBolt.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="367">
-                  <caret line="140" column="35" selection-start-line="140" selection-start-column="35" selection-end-line="140" selection-end-column="35" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1313#1335#0" expanded="true" />
-                    <element signature="e#1446#1463#0" expanded="true" />
-                    <element signature="e#1573#1590#0" expanded="true" />
-                    <element signature="e#1699#1713#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="254">
+                  <caret line="45" column="51" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="51" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="App5ResultBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java">
+          <file leaf-file-name="CusTextDetecResult.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecResult.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1577">
-                  <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="46" selection-end-column="123" />
+                <state relative-caret-position="247">
+                  <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
                   <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1353#1375#0" expanded="true" />
-                    <element signature="e#1486#1503#0" expanded="true" />
-                    <element signature="e#1613#1630#0" expanded="true" />
-                    <element signature="e#1739#1753#0" expanded="true" />
-                    <element signature="e#3894#3902#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GetTaskSpout.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GetTaskSpout.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="202">
-                  <caret line="111" column="71" selection-start-line="111" selection-start-column="71" selection-end-line="111" selection-end-column="71" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#3026#3043#0" expanded="true" />
-                    <element signature="e#3256#3272#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="StreamSharedMessage.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/StreamSharedMessage.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="310">
-                  <caret line="110" column="9" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1078#1086#0" expanded="true" />
-                    <element signature="e#1166#1174#0" expanded="true" />
-                    <element signature="e#1316#1337#0" expanded="true" />
-                    <element signature="e#1742#1750#0" expanded="true" />
-                    <element signature="e#3102#3123#0" expanded="true" />
-                    <element signature="e#3181#3202#0" expanded="true" />
-                    <element signature="e#3808#3816#0" expanded="true" />
-                    <element signature="e#4906#4927#0" expanded="true" />
-                    <element signature="e#5347#5368#0" expanded="true" />
-                    <element signature="e#5464#5485#0" expanded="true" />
+                    <element signature="e#1247#1269#0" expanded="true" />
+                    <element signature="e#1380#1397#0" expanded="true" />
+                    <element signature="e#1507#1524#0" expanded="true" />
+                    <element signature="e#1633#1647#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -206,45 +148,51 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="App1ResultBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App1ResultBolt.java">
+          <file leaf-file-name="CusTextGlobalPostDetecBolt1.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt1.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="143" column="20" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="20" />
+                <state relative-caret-position="184">
+                  <caret line="62" column="84" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="84" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1302#1324#0" expanded="true" />
-                    <element signature="e#1435#1452#0" expanded="true" />
-                    <element signature="e#1562#1579#0" expanded="true" />
-                    <element signature="e#1688#1702#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GlobalSigDistanceBolt.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalSigDistanceBolt.java">
+          <file leaf-file-name="GlobalFeatureBolt.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1089">
-                  <caret line="277" column="62" selection-start-line="277" selection-start-column="62" selection-end-line="277" selection-end-column="62" />
+                <state relative-caret-position="-352">
+                  <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="App2ResultBolt.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App2ResultBolt.java">
+          <file leaf-file-name="TextGlobalPostResultBolt.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPostResultBolt.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="208">
-                  <caret line="184" column="17" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
+                <state relative-caret-position="142">
+                  <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1379#1401#0" expanded="true" />
-                    <element signature="e#1512#1529#0" expanded="true" />
-                    <element signature="e#1639#1656#0" expanded="true" />
-                    <element signature="e#1765#1779#0" expanded="true" />
-                    <element signature="e#4399#4407#0" expanded="true" />
+                    <element signature="e#1399#1421#0" expanded="true" />
+                    <element signature="e#1532#1549#0" expanded="true" />
+                    <element signature="e#1659#1676#0" expanded="true" />
+                    <element signature="e#1785#1799#0" expanded="true" />
+                    <element signature="e#4419#4427#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="GetTaskSpout.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GetTaskSpout.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1079">
+                  <caret line="86" column="43" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -272,57 +220,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedDetectionSpout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedRetrievalSpout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/topology/TopologyMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/GlobalFeatureRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/GlobalFeatureBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/GlobalSigDistanceRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/GlobalSigDistanceBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/LocalFeatureRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/LocalFeatureBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/LocalSigDistanceRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/LocalSigDistanceBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/TextSimilarityRetrievalBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/TextSimilarityBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/Algorithm1ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/Algorithm2ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/Algorithm3ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/bolt/Algorithm4ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TopologyMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTopologyMain.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GetTaskSpout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/SharedStreamMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/TextUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/MyStringUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/StreamSharedMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm2ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextSimilarityBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm1ResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm3ResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/Algorithm4ResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App3ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalSigDistanceBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App1ResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App2ResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPostResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPreResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalLocalPreResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedDetectionSpout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedRetrievalSpout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusRetriSpout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalRetriBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalRetriResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusDetecSpout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt2.java" />
       </list>
     </option>
   </component>
@@ -495,36 +443,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="general" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm.ndvr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm.ndvr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ndvr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -985,7 +903,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -996,7 +914,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22121535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1062,44 +980,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/LocalSimilarVideo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/SIFTSigEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#520#536#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
-            <element signature="e#1225#1226#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/QueryVideoEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/VideoHSVSigEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-594">
-          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/VideoInfoEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5287">
@@ -1156,6 +1036,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="665">
           <caret line="38" column="38" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3473#3489#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1202,114 +1087,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedDetectionSpout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedRetrievalSpout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" column="3" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="29" column="75" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextRetrievalResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="101" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-936">
-          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="597" column="48" selection-start-line="597" selection-start-column="48" selection-end-line="597" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="991">
-          <caret line="188" column="44" selection-start-line="188" selection-start-column="44" selection-end-line="188" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1973">
-          <caret line="213" column="9" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalRetrievalBolt2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="156" column="53" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalFeatureBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2527">
-          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#3425#3447#0" expanded="false" />
-            <element signature="e#5891#5913#0" expanded="false" />
-            <element signature="e#7429#7451#0" expanded="false" />
-            <element signature="e#9325#9347#0" expanded="false" />
-            <element signature="e#9416#9438#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
           </folding>
@@ -1410,17 +1191,17 @@
         <state relative-caret-position="310">
           <caret line="110" column="9" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1078#1086#0" expanded="true" />
-            <element signature="e#1166#1174#0" expanded="true" />
-            <element signature="e#1316#1337#0" expanded="true" />
-            <element signature="e#1742#1750#0" expanded="true" />
-            <element signature="e#3102#3123#0" expanded="true" />
-            <element signature="e#3181#3202#0" expanded="true" />
-            <element signature="e#3808#3816#0" expanded="true" />
-            <element signature="e#4906#4927#0" expanded="true" />
-            <element signature="e#5347#5368#0" expanded="true" />
-            <element signature="e#5464#5485#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1078#1086#0" expanded="false" />
+            <element signature="e#1166#1174#0" expanded="false" />
+            <element signature="e#1316#1337#0" expanded="false" />
+            <element signature="e#1742#1750#0" expanded="false" />
+            <element signature="e#3102#3123#0" expanded="false" />
+            <element signature="e#3181#3202#0" expanded="false" />
+            <element signature="e#3808#3816#0" expanded="false" />
+            <element signature="e#4908#4929#0" expanded="false" />
+            <element signature="e#5353#5374#0" expanded="false" />
+            <element signature="e#5470#5491#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1433,32 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedGlobalLocalRetrievalResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextGlobalRetrievalBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
-          <caret line="216" column="35" selection-start-line="216" selection-start-column="35" selection-end-line="216" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/entity/TextSimilarVideo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45">
@@ -1467,14 +1222,6 @@
             <element signature="e#2058#2059#0" expanded="false" />
             <element signature="e#2088#2089#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalSigDistanceBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1089">
-          <caret line="277" column="62" selection-start-line="277" selection-start-column="62" selection-end-line="277" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1494,27 +1241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GetTaskSpout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="111" column="71" selection-start-line="111" selection-start-column="71" selection-end-line="111" selection-end-column="71" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#3026#3043#0" expanded="true" />
-            <element signature="e#3256#3272#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CustomizedTextDetectionResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalSigDistanceBolt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1523,76 +1249,295 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App1ResultBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextResultBolt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="143" column="20" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="20" />
+        <state relative-caret-position="38">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1302#1324#0" expanded="true" />
-            <element signature="e#1435#1452#0" expanded="true" />
-            <element signature="e#1562#1579#0" expanded="true" />
-            <element signature="e#1688#1702#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1302#1324#0" expanded="false" />
+            <element signature="e#1435#1452#0" expanded="false" />
+            <element signature="e#1562#1579#0" expanded="false" />
+            <element signature="e#1688#1702#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App2ResultBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="184" column="17" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1379#1401#0" expanded="true" />
-            <element signature="e#1512#1529#0" expanded="true" />
-            <element signature="e#1639#1656#0" expanded="true" />
-            <element signature="e#1765#1779#0" expanded="true" />
-            <element signature="e#4399#4407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App4ResultBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalResultBolt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
-          <caret line="140" column="35" selection-start-line="140" selection-start-column="35" selection-end-line="140" selection-end-column="35" />
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1313#1335#0" expanded="true" />
-            <element signature="e#1446#1463#0" expanded="true" />
-            <element signature="e#1573#1590#0" expanded="true" />
-            <element signature="e#1699#1713#0" expanded="true" />
+            <element signature="e#1317#1339#0" expanded="true" />
+            <element signature="e#1450#1467#0" expanded="true" />
+            <element signature="e#1577#1594#0" expanded="true" />
+            <element signature="e#1703#1717#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App5ResultBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPreResultBolt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1577">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="46" selection-end-column="123" />
+        <state relative-caret-position="209">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1353#1375#0" expanded="true" />
-            <element signature="e#1486#1503#0" expanded="true" />
-            <element signature="e#1613#1630#0" expanded="true" />
-            <element signature="e#1739#1753#0" expanded="true" />
-            <element signature="e#3894#3902#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1371#1393#0" expanded="false" />
+            <element signature="e#1504#1521#0" expanded="false" />
+            <element signature="e#1631#1648#0" expanded="false" />
+            <element signature="e#1757#1771#0" expanded="false" />
+            <element signature="e#3912#3920#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/App6ResultBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+        <state relative-caret-position="171">
+          <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalLocalPreResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1360#1382#0" expanded="false" />
+            <element signature="e#1493#1510#0" expanded="false" />
+            <element signature="e#1620#1637#0" expanded="false" />
+            <element signature="e#1746#1760#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/storm/storm/0.8.2/storm-0.8.2.jar!/backtype/storm/topology/IComponent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/util/SigSim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalSigDistanceBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="277" column="35" selection-start-line="277" selection-start-column="35" selection-end-line="277" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/LocalFeatureBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GlobalFeatureBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextRetriResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760">
+          <caret line="164" column="40" selection-start-line="164" selection-start-column="40" selection-end-line="164" selection-end-column="40" />
+          <folding>
+            <element signature="e#1760#1782#0" expanded="true" />
+            <element signature="e#1911#1933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalRetriResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="45" column="7" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusRetriSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-914">
+          <caret line="87" column="6" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusDetecSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="85" column="104" selection-start-line="85" selection-start-column="104" selection-end-line="85" selection-end-column="104" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#1350#1372#0" expanded="true" />
-            <element signature="e#1483#1500#0" expanded="true" />
-            <element signature="e#1610#1627#0" expanded="true" />
-            <element signature="e#1736#1750#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPreRetriBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="51" column="71" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1476#1498#0" expanded="true" />
+            <element signature="e#1627#1649#0" expanded="true" />
+            <element signature="e#3324#3332#0" expanded="true" />
+            <element signature="e#4140#4148#0" expanded="true" />
+            <element signature="e#4941#4959#0" expanded="true" />
+            <element signature="e#9984#10004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="113" column="39" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1119#1141#0" expanded="true" />
+            <element signature="e#1252#1269#0" expanded="true" />
+            <element signature="e#1379#1396#0" expanded="true" />
+            <element signature="e#1505#1519#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/GetTaskSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1079">
+          <caret line="86" column="43" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/general/TextGlobalPostResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1399#1421#0" expanded="true" />
+            <element signature="e#1532#1549#0" expanded="true" />
+            <element signature="e#1659#1676#0" expanded="true" />
+            <element signature="e#1785#1799#0" expanded="true" />
+            <element signature="e#4419#4427#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+          <folding>
+            <element signature="e#1247#1269#0" expanded="true" />
+            <element signature="e#1380#1397#0" expanded="true" />
+            <element signature="e#1507#1524#0" expanded="true" />
+            <element signature="e#1633#1647#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextDetecBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="45" column="51" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="62" column="84" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusTextGlobalPostDetecBolt2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="908">
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1469#1491#0" expanded="true" />
+            <element signature="e#1620#1642#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/pku/net/db/storm/ndvr/customized/CusGlobalLocalPreRetriBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="160" column="9" selection-start-line="160" selection-start-column="9" selection-end-line="160" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

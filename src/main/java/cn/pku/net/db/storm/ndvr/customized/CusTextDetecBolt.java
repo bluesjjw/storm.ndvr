@@ -32,8 +32,8 @@ import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
  * @author jeremyjiang
  * Created at 2016/5/12 20:37
  */
-public class CustomizedTextDetectionBolt extends BaseBasicBolt {
-    private static final Logger logger = Logger.getLogger(CustomizedTextDetectionBolt.class);
+public class CusTextDetecBolt extends BaseBasicBolt {
+    private static final Logger logger = Logger.getLogger(CusTextDetecBolt.class);
 
     /**
      * Declare output fields.
@@ -42,12 +42,8 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId",
-                                    "taskType",
-                                    "queryVideo1",
-                                    "queryVideo2",
-                                    "textSimilarity",
-                                    "startTimeStamp"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo1", "queryVideo2", "textSimilarity",
+                "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -63,6 +59,7 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
         String queryVideoStr1 = input.getStringByField("queryVideo1");
         String queryVideoStr2 = input.getStringByField("queryVideo2");
         long   startTimeStamp = input.getLongByField("startTimeStamp");
+        int   fieldGroupingId = input.getIntegerByField("fieldGroupingId");
 
         // long startTimeStamp = System.currentTimeMillis();
         VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
@@ -71,8 +68,7 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
         // 如果两个视频duration相差太大,则文本相似度设为0,输出tuple
         if (Math.abs(queryVideo1.getDuration() - queryVideo2.getDuration())
                 > Const.STORM_CONFIG.VIDEO_DURATION_WINDOW) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp));
-
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -81,8 +77,7 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
 
         // 如果两个query视频的文本信息为空,则文本相似度设为0,输出tuple
         if ((null == queryVideoText1) || (null == queryVideoText2)) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp));
-
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -91,8 +86,7 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
 
         // 如果两个query视频分词结果为空,则文本相似度设为0,输出tuple
         if (querySplitText1.isEmpty() || querySplitText2.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp));
-
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -103,16 +97,13 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
         // 计算query与compare相同的term数量占query总term的比例
         for (int i = 0; i < querySplitText1.size(); i++) {
             int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
-                           ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                           : 0;
+                           ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
             int maxIndex = (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) < querySplitText2.size()
-                           ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                           : (querySplitText2.size() - 1);
+                           ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : (querySplitText2.size() - 1);
 
             for (int j = minIndex; j < maxIndex + 1; j++) {
                 if (querySplitText1.get(i).equals(querySplitText2.get(j))) {
                     sameTermNum++;
-
                     break;
                 }
             }
@@ -125,16 +116,12 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
 
         for (int i = 0; i < querySplitText2.size(); i++) {
             int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
-                           ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                           : 0;
+                           ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
             int maxIndex = (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) < querySplitText1.size()
-                           ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                           : (querySplitText1.size() - 1);
-
+                           ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : (querySplitText1.size() - 1);
             for (int j = minIndex; j < maxIndex + 1; j++) {
                 if (querySplitText2.get(i).equals(querySplitText1.get(j))) {
                     sameTermNum++;
-
                     break;
                 }
             }
@@ -152,12 +139,7 @@ public class CustomizedTextDetectionBolt extends BaseBasicBolt {
         }
 
         // 放入文本相似度,输出
-        collector.emit(new Values(taskId,
-                                  taskType,
-                                  queryVideoStr1,
-                                  queryVideoStr2,
-                                  harmonicSimilarity,
-                                  startTimeStamp));
+        collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, harmonicSimilarity, startTimeStamp, fieldGroupingId));
     }
 }
 

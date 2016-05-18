@@ -117,13 +117,13 @@ public class StreamSharedMessage {
     }
 
     public static void main(String[] args){
-        String[] components = {"GetTaskSpout", "GlobalFeatureBolt", "GlobalSigDistanceBolt", "App4ResultBolt"};
+        String[] components = {"GetTaskSpout", "GlobalFeatureBolt", "GlobalSigDistanceBolt", "GlobalResultBolt"};
 
         Map<String, Set<String>> topology= new HashMap<String, Set<String>>();
         topology.put("GetTaskSpout", new HashSet<String>(){ { add("GlobalFeatureBolt"); } });
         topology.put("GlobalFeatureBolt", new HashSet<String>(){ { add("GlobalSigDistanceBolt"); } });
-        topology.put("GlobalSigDistanceBolt", new HashSet<String>(){ { add("App4ResultBolt"); } });
-        topology.put("App4ResultBolt", new HashSet<String>());
+        topology.put("GlobalSigDistanceBolt", new HashSet<String>(){ { add("GlobalResultBolt"); } });
+        topology.put("GlobalResultBolt", new HashSet<String>());
 
         Map<String, Set<String>> needKeys = new HashMap<String, Set<String>>();    // fields needed by each component
         Map<String, Set<String>> newKeys = new HashMap<String, Set<String>>();    // fields produced by each component
@@ -146,8 +146,8 @@ public class StreamSharedMessage {
         //needKeys.put("TextSimilarityBolt", new HashSet<String>(){ { add("queryVideo"); } });
         //newKeys.put("TextSimilarityBolt", new HashSet<String>(){ { add("textSimilarVideoList"); } });
 
-        needKeys.put("App4ResultBolt", new HashSet<String>(){ { add("globalSimilarVideoList"); } });
-        newKeys.put("App4ResultBolt", new HashSet<String>(){ { add("result"); } });
+        needKeys.put("GlobalResultBolt", new HashSet<String>(){ { add("globalSimilarVideoList"); } });
+        newKeys.put("GlobalResultBolt", new HashSet<String>(){ { add("result"); } });
 
         calMsgReduction(topology, needKeys, newKeys);
     }

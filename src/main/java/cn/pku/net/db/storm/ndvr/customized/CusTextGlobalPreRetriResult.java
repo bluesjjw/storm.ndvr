@@ -23,16 +23,16 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 
 import cn.pku.net.db.storm.ndvr.dao.TaskResultDao;
-import cn.pku.net.db.storm.ndvr.entity.LocalSimilarVideo;
+import cn.pku.net.db.storm.ndvr.entity.GlobalSimilarVideo;
 import cn.pku.net.db.storm.ndvr.entity.TaskEntity;
 
 /**
- * Description: Customized result bolt for retrieval task, save the global and local similar video list to the MongoDB
+ * Description: Customized result bolt for pre-filtering retrieval task, save the textual and global similar video list to MongoDB
  *
  * @author jeremyjiang
- * Created at 2016/5/12 20:24
+ * Created at 2016/5/12 20:48
  */
-public class CustomizedGlobalLocalRetrievalResult extends BaseBasicBolt {
+public class CusTextGlobalPreRetriResult extends BaseBasicBolt {
 
     /**
      * Declare output fields.
@@ -52,13 +52,14 @@ public class CustomizedGlobalLocalRetrievalResult extends BaseBasicBolt {
      */
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
-        String                  taskId               = input.getStringByField("taskId");
-        String                  taskType             = input.getStringByField("taskType");
-        String                  similarVideoListStr  = input.getStringByField("similarVideoList");
-        Type                    similarVideoListType = new TypeToken<List<LocalSimilarVideo>>() {}
+        String                   taskId               = input.getStringByField("taskId");
+        String                   taskType             = input.getStringByField("taskType");
+        String                   similarVideoListStr  = input.getStringByField("similarVideoList");
+        Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}
         .getType();
-        List<LocalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
-        TaskEntity              task                 = new TaskEntity();
+        List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
+                                                                              similarVideoListType);
+        TaskEntity               task                 = new TaskEntity();
 
         task.setTaskId(taskId);
         task.setTaskType(taskType);
@@ -66,7 +67,7 @@ public class CustomizedGlobalLocalRetrievalResult extends BaseBasicBolt {
         List<String> videoIdList = new ArrayList<String>();
 
         if (null != similarVideoList) {
-            for (LocalSimilarVideo similarVideo : similarVideoList) {
+            for (GlobalSimilarVideo similarVideo : similarVideoList) {
                 videoIdList.add(similarVideo.getVideoId());
             }
         }

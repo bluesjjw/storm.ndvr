@@ -59,14 +59,14 @@ import cn.pku.net.db.storm.ndvr.image.analyze.sift.scale.KDFeaturePoint;
 import cn.pku.net.db.storm.ndvr.util.GlobalSigGenerator;
 
 /**
- * Description: Customized bolt for retrieval task, generate and compare global visual signature and local visual signature
+ * Description: Customized bolt for pre-filtering retrieval task, generate and compare global visual signature and local visual signature
  *
  * @author jeremyjiang
  * Created at 2016/5/12 20:22
  */
-public class CustomizedGlobalLocalRetrievalBolt extends BaseBasicBolt {
+public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
     private static final Logger              logger                  =
-        Logger.getLogger(CustomizedGlobalLocalRetrievalBolt.class);
+        Logger.getLogger(CusGlobalLocalPreRetriBolt.class);
     private static Map<Integer, Set<String>> cachedVideoIdByDuration = new ConcurrentHashMap<Integer, Set<String>>();    // 缓存视频数据,key为duration,value为视频元数据
     private static Map<String, HSVSigEntity> cachedHSVSignature = new ConcurrentHashMap<String, HSVSigEntity>();    // 缓存视频的HSV全局标签,key为视频id,value为视频HSV全局标签
 
@@ -202,7 +202,7 @@ public class CustomizedGlobalLocalRetrievalBolt extends BaseBasicBolt {
                 comparedVideoHsvSig = new VideoHSVSigEntity(comparedVideoId, cachedHSVSignature.get(comparedVideoId));
             }
 
-            float euclideanDistance = SigSim.getGlobalDistance(queryVideoHsvSig.getSig(),
+            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(),
                                                                                        comparedVideoHsvSig.getSig());
 
             // logger.info("EuclideanDistance: " + euclideanDistance + ", queryVideoId: "
@@ -227,6 +227,7 @@ public class CustomizedGlobalLocalRetrievalBolt extends BaseBasicBolt {
         // 待比较视频的id集合(唯一集合),根据视频id即可以找到该视频的SIFT标签文件
         comparedVideoIdSet.clear();
 
+        // local visual feature的候选集为global visual similar list
         for (GlobalSimilarVideo similarVideo : globalSimilarVideoList) {
             comparedVideoIdSet.add(similarVideo.getVideoId());
         }

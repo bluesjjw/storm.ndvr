@@ -545,7 +545,7 @@ public class Test {
                         comparedVideoHsvSig = new VideoHSVSigEntity(comparedVideoId,
                                 cachedHSVSignature.get(comparedVideoId));
                     }
-                    float euclideanDistance = SigSim.getGlobalDistance(
+                    float euclideanDistance = SigSim.getEuclideanDistance(
                             queryVideoHsvSig.getSig(), comparedVideoHsvSig.getSig());
                     //                    logger.info("euclideanDistance: " + euclideanDistance + ", queryVideoId: "
                     //                                + queryVideoInfo.getVideoId() + ", comparedVideoId"
@@ -594,7 +594,7 @@ public class Test {
                 VideoHSVSigEntity queryVideoHsvSig2 = (new Gson()).fromJson(queryGlobalSigStr2,
                         VideoHSVSigEntity.class);
                 // 计算全局标签距离
-                float euclideanDistance = SigSim.getGlobalDistance(
+                float euclideanDistance = SigSim.getEuclideanDistance(
                         queryVideoHsvSig.getSig(), queryVideoHsvSig2.getSig());
                 ctrlMsg.put("globalDistance", Float.toString(euclideanDistance));
                 //                logger.info("globalDistance: " + euclideanDistance + ", queryVideo1: "

@@ -9,7 +9,6 @@
 
 package cn.pku.net.db.storm.ndvr.customized;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,9 +34,8 @@ import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
  * @author jeremyjiang
  * Created at 2016/5/12 20:44
  */
-public class CustomizedTextDetectionResult extends BaseBasicBolt {
-    private static final Logger              logger                =
-        Logger.getLogger(CustomizedTextDetectionResult.class);
+public class CusTextDetecResult extends BaseBasicBolt {
+    private static final Logger              logger                = Logger.getLogger(CusTextDetecResult.class);
     private static Map<String, List<String>> taskResultMap         = new ConcurrentHashMap<String, List<String>>();    // 存储task执行结果
     private static Map<String, Integer>      taskSizeMap           = new ConcurrentHashMap<String, Integer>();    // 存储task的规模
     private static Map<String, Integer>      taskResultComparedMap = new ConcurrentHashMap<String, Integer>();    // 已经比较过的对数
@@ -49,7 +47,7 @@ public class CustomizedTextDetectionResult extends BaseBasicBolt {
      * @param declarer the declarer
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
-    public void declareOutputFields(OutputFieldsDeclarer declarer) {}
+    public void declareOutputFields(OutputFieldsDeclarer declarer) { }
 
     /**
      * Execute.
@@ -64,16 +62,14 @@ public class CustomizedTextDetectionResult extends BaseBasicBolt {
         String queryVideoStr1 = input.getStringByField("queryVideo1");
         String queryVideoStr2 = input.getStringByField("queryVideo2");
         float  textSimilarity = input.getFloatByField("textSimilarity");
+        long startTimeStamp = input.getLongByField("startTimeStamp");
+        int                 fieldGroupingId = input.getIntegerByField("fieldGroupingId");
 
-        if (!taskResultMap.containsKey(taskId)) {
+        if (!taskResultMap.containsKey(taskId)) {   // insert new item into taskResultMap
             TaskEntity task = (new TaskDao()).getTaskById(taskId);
-
             taskResultMap.put(taskId, task.getVideoIdList());
             taskSizeMap.put(taskId, task.getVideoIdList().size());
             taskResultComparedMap.put(taskId, 0);
-
-            long startTimeStamp = input.getLongByField("startTimeStamp");
-
             taskStartTimeStampMap.put(taskId, startTimeStamp);
         }
 
@@ -83,38 +79,34 @@ public class CustomizedTextDetectionResult extends BaseBasicBolt {
             List<String>    videoIdList = taskResultMap.get(taskId);
             int             index1      = videoIdList.indexOf(queryVideo1.getVideoId());
             int             index2      = videoIdList.indexOf(queryVideo2.getVideoId());
-
-            if ((index1 == -1) || (index2 == -1)) {}
-            else if (index1 > index2) {
+            if ((index1 == -1) || (index2 == -1)) { // remove the latter video in the result video list
+            } else if (index1 > index2) {
                 videoIdList.remove(index1);
+                logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
+                        taskId, index1));
             } else {
                 videoIdList.remove(index2);
+                logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
+                        taskId, index2));
             }
-
             taskResultMap.put(taskId, videoIdList);
-            logger.info("TaskId: " + taskId + ", Video count: " + videoIdList.size());
         }
 
         int taskSize = taskSizeMap.get(taskId);
-
-        // int taskSize = 100;
         int totalComparedCount = (taskSize * (taskSize - 1)) / 2;
         int taskResultCompared = taskResultComparedMap.get(taskId) + 1;
 
         if (totalComparedCount == taskResultCompared) {
             TaskEntity task = new TaskEntity();
-
             task.setTaskId(taskId);
             task.setTaskType(taskType);
 
             List<String> videoIdList = taskResultMap.get(taskId);
-
             task.setVideoIdList(videoIdList);
             task.setStatus("1");
             task.setTimeStamp(Long.toString(System.currentTimeMillis() - taskStartTimeStampMap.get(taskId)));
 
             TaskResultDao taskResultDao = new TaskResultDao();
-
             taskResultDao.insert(task);
             taskResultMap.remove(taskId);
             taskSizeMap.remove(taskId);

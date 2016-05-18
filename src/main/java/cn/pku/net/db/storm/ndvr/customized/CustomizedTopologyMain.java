@@ -30,14 +30,14 @@ public class CustomizedTopologyMain {
 
         //Topology definition
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("getTask", new CustomizedDetectionSpout(), 1);
+        builder.setSpout("getTask", new CusDetecSpout(), 1);
 
         //text
-        //        builder.setBolt("feature", new CustomizedTextDetectionBolt(), 100).shuffleGrouping(
+        //        builder.setBolt("feature", new CusTextDetecBolt(), 100).shuffleGrouping(
         //            "getTask");
-        builder.setBolt("similarity", new CustomizedTextDetectionBolt(), 400).shuffleGrouping(
+        builder.setBolt("similarity", new CusTextDetecBolt(), 400).shuffleGrouping(
             "getTask");
-        builder.setBolt("result", new CustomizedTextDetectionResult(), 100).fieldsGrouping(
+        builder.setBolt("result", new CusTextDetecResult(), 100).fieldsGrouping(
             "similarity", new Fields("taskId"));
 
         Config conf = new Config();

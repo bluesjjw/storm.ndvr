@@ -36,8 +36,8 @@ import cn.pku.net.db.storm.ndvr.util.GlobalSigGenerator;
  * @author jeremyjiang
  * Created at 2016/5/12 20:32
  */
-public class CustomizedGlobalRetrievalBolt1 extends BaseBasicBolt {
-    private static final Logger logger = Logger.getLogger(CustomizedGlobalRetrievalBolt1.class);
+public class CusGlobalRetriBolt1 extends BaseBasicBolt {
+    private static final Logger logger = Logger.getLogger(CusGlobalRetriBolt1.class);
 
     /**
      * Declare output fields.

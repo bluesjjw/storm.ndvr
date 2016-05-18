@@ -9,10 +9,8 @@
 
 package cn.pku.net.db.storm.ndvr.customized;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
@@ -32,23 +30,22 @@ import cn.pku.net.db.storm.ndvr.entity.TaskEntity;
 import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
 
 /**
- * Description: Customized spout for detection task
+ * Description: Customized spout for retrieval task
  *
  * @author jeremyjiang
- * Created at 2016/5/12 20:18
+ * Created at 2016/5/12 20:36
  */
-public class CustomizedDetectionSpout implements IRichSpout {
-    private static final Logger                 logger          = Logger.getLogger(CustomizedDetectionSpout.class);
-    private static Map<String, VideoInfoEntity> cachedVideoInfo = new ConcurrentHashMap<String, VideoInfoEntity>();
-    private boolean                             completed       = false;
-    private int                                 interval        = Const.STORM_CONFIG.GET_TASK_INTERVAL;    // 查询任务的间隔，单位为毫秒
-    private SpoutOutputCollector                collector;
-    private TopologyContext                     context;
+public class CusRetriSpout implements IRichSpout {
+    private static final Logger  logger    = Logger.getLogger(CusRetriSpout.class);
+    private boolean              completed = false;
+    private int                  interval  = Const.STORM_CONFIG.GET_TASK_INTERVAL;    // 查询任务的间隔，单位为秒
+    private SpoutOutputCollector collector;
+    private TopologyContext      context;
 
     /**
      * Ack.
      *
-     * @param msgId the msgid
+     * @param msgId the msg id
      * @see backtype.storm.spout.ISpout#ack(java.lang.Object) backtype.storm.spout.ISpout#ack(java.lang.Object)
      */
     public void ack(Object msgId) {
@@ -79,11 +76,11 @@ public class CustomizedDetectionSpout implements IRichSpout {
     /**
      * Declare output fields.
      *
-     * @param declarer the er
+     * @param declarer the declarer
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId", "taskType", "queryVideo1", "queryVideo2", "startTimeStamp"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo", "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -105,7 +102,7 @@ public class CustomizedDetectionSpout implements IRichSpout {
         if (!completed) {
             long             startTimeStamp = System.currentTimeMillis();
             TaskDao          taskDao        = new TaskDao();
-            List<TaskEntity> taskList       = taskDao.getNewDetectionTask();
+            List<TaskEntity> taskList       = taskDao.getNewRetrievalTask();
 
             if ((null == taskList) || taskList.isEmpty()) {
                 return;
@@ -117,50 +114,20 @@ public class CustomizedDetectionSpout implements IRichSpout {
                 VideoInfoDao videoInfoDao = new VideoInfoDao();
 
                 // 取出task对应的query视频id
-                List<String>          videoIdList   = task.getVideoIdList();
-                List<VideoInfoEntity> videoInfoList = new ArrayList<VideoInfoEntity>();
+                List<String>    videoIdList     = task.getVideoIdList();
+                VideoInfoEntity queryVideo      = videoInfoDao.getVideoInfoById(videoIdList.get(0));
+                Gson            gson            = new Gson();
+                String          queryVideoStr   = gson.toJson(queryVideo);
+                int             fieldGroupingId = queryVideo.getDuration() / Const.STORM_CONFIG.BOLT_DURATION_WINDOW;
 
-                for (String videoId : videoIdList) {
-                    if (cachedVideoInfo.containsKey(videoId)) {
-                        videoInfoList.add(cachedVideoInfo.get(videoId));
-                    } else {
-                        VideoInfoEntity videoInfo = videoInfoDao.getVideoInfoById(videoId);
-
-                        if (null == videoInfo) {
-                            logger.info("Invalid video: " + videoId);
-
-                            continue;
-                        }
-
-                        videoInfoList.add(videoInfo);
-                        cachedVideoInfo.put(videoId, videoInfo);
-                    }
-                }
-
-                for (VideoInfoEntity videoInfo1 : videoInfoList) {
-                    for (VideoInfoEntity videoInfo2 : videoInfoList) {
-
-                        // 保证第一个视频的id小于第二个视频的id
-                        if (Integer.parseInt(videoInfo1.getVideoId()) < Integer.parseInt(videoInfo2.getVideoId())) {
-                            Gson   gson           = new Gson();
-                            String queryVideoStr1 = gson.toJson(videoInfo1);
-                            String queryVideoStr2 = gson.toJson(videoInfo2);
-
-                            collector.emit(new Values(taskId,
-                                                      taskType,
-                                                      queryVideoStr1,
-                                                      queryVideoStr2,
-                                                      startTimeStamp));
-                        }
-                    }
-                }
+                this.collector.emit(new Values(taskId, taskType, queryVideoStr, startTimeStamp, fieldGroupingId));
             }
 
-            // try {
-            // Thread.sleep(interval);
-            // } catch (InterruptedException e) {
-            // logger.error("InterruptedException during thread sleep", e);
-            // }
+            try {
+                Thread.sleep(interval * 1000);
+            } catch (InterruptedException e) {
+                logger.error("InterruptedException during thread sleep", e);
+            }
         }
     }
 

@@ -28,19 +28,19 @@ import backtype.storm.tuple.Tuple;
 
 import cn.pku.net.db.storm.ndvr.common.Const;
 import cn.pku.net.db.storm.ndvr.dao.TaskResultDao;
-import cn.pku.net.db.storm.ndvr.entity.GlobalSimilarVideo;
+import cn.pku.net.db.storm.ndvr.entity.LocalSimilarVideo;
 import cn.pku.net.db.storm.ndvr.entity.TaskEntity;
 import org.apache.log4j.Logger;
 
 /**
- * Description: Use textual and global visual feature, filter-and-refine strategy
+ * Description: Use global and local visual feature, filter-and-refine strategy
  *
  * @author jeremyjiang
- * Created at 2016/5/13 9:50
+ * Created at 2016/5/13 9:47
  */
-public class App5ResultBolt extends BaseBasicBolt {
+public class GlobalLocalPreResultBolt extends BaseBasicBolt {
 
-    private static final Logger logger                = Logger.getLogger(App5ResultBolt.class);
+    private static final Logger logger                = Logger.getLogger(TextResultBolt.class);
     private static Map<String, List<String>> taskResultMap         = new ConcurrentHashMap<String, List<String>>();    // 存储task执行结果
     private static Map<String, Integer>      taskSizeMap           = new ConcurrentHashMap<String, Integer>();    // 存储task的规模
     private static Map<String, Integer>      taskResultComparedMap = new ConcurrentHashMap<String, Integer>();    // 已经比较过的对数
@@ -60,7 +60,9 @@ public class App5ResultBolt extends BaseBasicBolt {
      *
      * @param input     the input
      * @param collector the collector
-     * @see backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple, backtype.storm.topology.BasicOutputCollector) backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple, backtype.storm.topology.BasicOutputCollector)
+     * @see backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple,
+     * backtype.storm.topology.BasicOutputCollector) backtype.storm.topology.IBasicBolt#execute(backtype.storm.tuple.Tuple,
+     * backtype.storm.topology.BasicOutputCollector)
      */
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
@@ -74,14 +76,15 @@ public class App5ResultBolt extends BaseBasicBolt {
 
             // query视频
             // String queryVideoInfoStr = ctrlMsg.get("queryVideo");
-            // VideoInfoEntity queryVideoInfo = (new Gson()).fromJson(queryVideoInfoStr,
+            // VideoInfoEntity queryVideoInfo = (new
+            // Gson()).fromJson(queryVideoInfoStr,
             // VideoInfoEntity.class);
-            String                   similarVideoListStr  = ctrlMsg.get("globalSimilarVideoList");
-            Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}
+            String                  similarVideoListStr  = ctrlMsg.get("localSimilarVideoList");
+            Type                    similarVideoListType = new TypeToken<List<LocalSimilarVideo>>() {}
             .getType();
-            List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
-                                                                                  similarVideoListType);
-            TaskEntity task = new TaskEntity();
+            List<LocalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
+                                                                                 similarVideoListType);
+            TaskEntity              task                 = new TaskEntity();
 
             task.setTaskId(taskId);
             task.setTaskType(taskType);
@@ -89,7 +92,7 @@ public class App5ResultBolt extends BaseBasicBolt {
             List<String> videoIdList = new ArrayList<String>();
 
             if (null != similarVideoList) {
-                for (GlobalSimilarVideo similarVideo : similarVideoList) {
+                for (LocalSimilarVideo similarVideo : similarVideoList) {
                     videoIdList.add(similarVideo.getVideoId());
                 }
             }
@@ -106,7 +109,7 @@ public class App5ResultBolt extends BaseBasicBolt {
             taskResultDao.insert(task);
         }
         // detection任务,两个query视频
-        else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)) {
+        else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)){
             if (!taskResultMap.containsKey(taskId)) {
                 TaskEntity task = (new TaskDao()).getTaskById(taskId);
 
@@ -115,22 +118,21 @@ public class App5ResultBolt extends BaseBasicBolt {
                 taskResultComparedMap.put(taskId, 0);
 
                 long startTimeStamp = Long.parseLong(ctrlMsg.get("startTimeStamp"));
-
                 taskStartTimeStampMap.put(taskId, startTimeStamp);
             }
+            String queryVideoStr1 = ctrlMsg.get("queryVideo1");
+            String queryVideoStr2 = ctrlMsg.get("queryVideo2");
+            float localSimilarity = Float.parseFloat(ctrlMsg.get("localSimilarity"));
 
-            String          queryVideoStr1 = ctrlMsg.get("queryVideo1");
-            String          queryVideoStr2 = ctrlMsg.get("queryVideo2");
-            VideoInfoEntity queryVideo1    = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
-            VideoInfoEntity queryVideo2    = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
-
-            if (Float.parseFloat(ctrlMsg.get("globalDistance")) > Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD){
+            if (localSimilarity > Const.STORM_CONFIG.LOCALSIG_VIDEO_SIMILARITY_THRESHOLd) {
+                VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
+                VideoInfoEntity queryVideo2 = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
                 List<String> videoIdList = taskResultMap.get(taskId);
-                int          index1      = videoIdList.indexOf(queryVideo1.getVideoId());
-                int          index2      = videoIdList.indexOf(queryVideo2.getVideoId());
+                int index1 = videoIdList.indexOf(queryVideo1.getVideoId());
+                int index2 = videoIdList.indexOf(queryVideo2.getVideoId());
 
-                if ((index1 == -1) || (index2 == -1)) {}
-                else if (index1 > index2) {
+                if (index1 == -1 || index2 == -1) {
+                } else if (index1 > index2) {
                     videoIdList.remove(index1);
                     logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
                             taskId,
@@ -144,8 +146,9 @@ public class App5ResultBolt extends BaseBasicBolt {
                 taskResultMap.put(taskId, videoIdList);
             }
 
-            int taskSize           = taskSizeMap.get(taskId);
-            int totalComparedCount = (taskSize * (taskSize - 1));    // global visual + textual, both n(n-1)/2
+            int taskSize = taskSizeMap.get(taskId);
+
+            int totalComparedCount = (taskSize * (taskSize-1)) / 2;
             int taskResultCompared = taskResultComparedMap.get(taskId) + 1;
 
             if (totalComparedCount == taskResultCompared) {

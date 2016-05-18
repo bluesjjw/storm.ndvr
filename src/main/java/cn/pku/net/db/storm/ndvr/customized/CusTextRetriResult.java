@@ -23,16 +23,16 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 
 import cn.pku.net.db.storm.ndvr.dao.TaskResultDao;
-import cn.pku.net.db.storm.ndvr.entity.GlobalSimilarVideo;
 import cn.pku.net.db.storm.ndvr.entity.TaskEntity;
+import cn.pku.net.db.storm.ndvr.entity.TextSimilarVideo;
 
 /**
- * Description: Customized result bolt for retrieval task, save the global visual similar video list to MongoDB
+ * Description: Customized result bolt for retrieval task, save textual similar video list to MongoDB
  *
  * @author jeremyjiang
- * Created at 2016/5/12 20:34
+ * Created at 2016/5/12 20:52
  */
-public class CustomizedGlobalRetrievalResult extends BaseBasicBolt {
+public class CusTextRetriResult extends BaseBasicBolt {
 
     /**
      * Declare output fields.
@@ -52,24 +52,21 @@ public class CustomizedGlobalRetrievalResult extends BaseBasicBolt {
      */
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
-        String                   taskId               = input.getStringByField("taskId");
-        String                   taskType             = input.getStringByField("taskType");
-        String                   similarVideoListStr  = input.getStringByField("globalSimilarVideoList");
-        Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}
+        String                 taskId               = input.getStringByField("taskId");
+        String                 taskType             = input.getStringByField("taskType");
+        String                 similarVideoListStr  = input.getStringByField("textSimilarVideoList");
+        Type                   similarVideoListType = new TypeToken<List<TextSimilarVideo>>() {}
         .getType();
-        List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
-                                                                              similarVideoListType);
-        TaskEntity               task                 = new TaskEntity();
+        List<TextSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
+        TaskEntity             task                 = new TaskEntity();
 
         task.setTaskId(taskId);
         task.setTaskType(taskType);
 
         List<String> videoIdList = new ArrayList<String>();
 
-        if (null != similarVideoList) {
-            for (GlobalSimilarVideo similarVideo : similarVideoList) {
-                videoIdList.add(similarVideo.getVideoId());
-            }
+        for (TextSimilarVideo similarVideo : similarVideoList) {
+            videoIdList.add(similarVideo.getVideoId());
         }
 
         task.setVideoIdList(videoIdList);

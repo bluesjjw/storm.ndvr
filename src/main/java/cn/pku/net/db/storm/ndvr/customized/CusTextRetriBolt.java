@@ -38,8 +38,8 @@ import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
  * @author jeremyjiang
  * Created at 2016/5/12 20:50
  */
-public class CustomizedTextRetrievalBolt extends BaseBasicBolt {
-    private static final Logger logger = Logger.getLogger(CustomizedTextRetrievalBolt.class);
+public class CusTextRetriBolt extends BaseBasicBolt {
+    private static final Logger logger = Logger.getLogger(CusTextRetriBolt.class);
 
     /**
      * Declare output fields.
