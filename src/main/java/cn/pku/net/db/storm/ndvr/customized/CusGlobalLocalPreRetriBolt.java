@@ -27,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.imageio.ImageIO;
 
+import backtype.storm.task.TopologyContext;
 import cn.pku.net.db.storm.ndvr.util.SigSim;
 import org.apache.log4j.Logger;
 
@@ -59,16 +60,15 @@ import cn.pku.net.db.storm.ndvr.image.analyze.sift.scale.KDFeaturePoint;
 import cn.pku.net.db.storm.ndvr.util.GlobalSigGenerator;
 
 /**
- * Description: Customized bolt for pre-filtering retrieval task, generate and compare global visual signature and local visual signature
+ * Description: Customized bolt for pre-filtering retrieval task, generate and compare global visual and local visual signature
  *
  * @author jeremyjiang
  * Created at 2016/5/12 20:22
  */
 public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
-    private static final Logger              logger                  =
-        Logger.getLogger(CusGlobalLocalPreRetriBolt.class);
+    private static final Logger              logger                  = Logger.getLogger(CusGlobalLocalPreRetriBolt.class);
     private static Map<Integer, Set<String>> cachedVideoIdByDuration = new ConcurrentHashMap<Integer, Set<String>>();    // 缓存视频数据,key为duration,value为视频元数据
-    private static Map<String, HSVSigEntity> cachedHSVSignature = new ConcurrentHashMap<String, HSVSigEntity>();    // 缓存视频的HSV全局标签,key为视频id,value为视频HSV全局标签
+    private static Map<String, HSVSigEntity> cachedHSVSignature      = new ConcurrentHashMap<String, HSVSigEntity>();    // 缓存视频的HSV全局标签,key为视频id,value为视频HSV全局标签
 
     /**
      * Declare output fields.
@@ -77,12 +77,7 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId",
-                                    "taskType",
-                                    "queryVideo",
-                                    "similarVideoList",
-                                    "startTimeStamp",
-                                    "fieldGroupingId"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo", "localSimilarVideoList", "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -101,10 +96,15 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
         VideoInfoEntity      queryVideo      = (new Gson()).fromJson(queryVideoStr, VideoInfoEntity.class);
         List<KeyFrameEntity> keyframeList    = (new KeyFrameDao()).getKeyFrameByVideoId(queryVideo.getVideoId());
 
+        // 保存全局标签相似的视频
+        List<GlobalSimilarVideo> globalSimilarVideoList = new ArrayList<GlobalSimilarVideo>();
+        // 保存局部特征相似的视频
+        List<LocalSimilarVideo> localSimilarVideoList = new ArrayList<LocalSimilarVideo>();
+
         // 如果该视频没有对应的关键帧信息,则将全局标签设为null并输出
         if ((null == keyframeList) || keyframeList.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            String localSimilarVideoListStr = (new Gson()).toJson(localSimilarVideoList);
+            collector.emit(new Values(taskId, taskType, queryVideoStr, localSimilarVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -113,15 +113,11 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
         HSVSigEntity      queryHsvSignature = GlobalSigGenerator.generate(keyframeList);
         VideoHSVSigEntity queryVideoHsvSig  = new VideoHSVSigEntity(queryVideo.getVideoId(), queryHsvSignature);
 
-        // 输出结果,保存相似的视频
-        List<GlobalSimilarVideo> globalSimilarVideoList = new ArrayList<GlobalSimilarVideo>();
-
         // 如果query全局标签为空,则输出空列表
         if ((null == queryVideoHsvSig) || (null == queryVideoHsvSig.getSig())) {
-
+            String localSimilarVideoListStr = (new Gson()).toJson(localSimilarVideoList);
             // bolt输出
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            collector.emit(new Values(taskId, taskType, queryVideoStr, localSimilarVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -152,7 +148,6 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
                 }
 
                 if (videoIdSet.isEmpty()) {
-
                     // 存入cache
                     this.cachedVideoIdByDuration.put(duration, videoIdSet);
                     logger.info("Cache duration:" + duration + ", size:" + videoIdSet.size());
@@ -161,7 +156,6 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
                 // 存入待比较视频列表
                 comparedVideoIdSet.addAll(videoIdSet);
             }
-
             // 如果cache中有对应时长的视频,则直接查询内存的Map
             else {
                 comparedVideoIdSet.addAll(this.cachedVideoIdByDuration.get(duration));
@@ -171,7 +165,6 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
         // logger.info("Compared video size: " + comparedVideoIdSet.size());
         // 依次比较compare视频和query视频
         for (String comparedVideoId : comparedVideoIdSet) {
-
             // 如果为检索视频本身，则跳过
             if (comparedVideoId.equals(queryVideo.getVideoId())) {
                 continue;
@@ -196,31 +189,23 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
                 // + comparedVideoId + ", duration: "
                 // + duration);
             }
-
             // 如果缓存中有compare视频的HSV标签,则查询缓存
             else {
                 comparedVideoHsvSig = new VideoHSVSigEntity(comparedVideoId, cachedHSVSignature.get(comparedVideoId));
             }
 
-            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(),
-                                                                                       comparedVideoHsvSig.getSig());
+            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(), comparedVideoHsvSig.getSig());
 
-            // logger.info("EuclideanDistance: " + euclideanDistance + ", queryVideoId: "
-            // + queryVideo.getVideoId() + ", comparedVideoId: " + comparedVideoId);
             if (euclideanDistance <= Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD) {
                 globalSimilarVideoList.add(new GlobalSimilarVideo(comparedVideoId, euclideanDistance));
             }
         }
 
-        // for (GlobalSimilarVideo similarVideo : globalSimilarVideoList) {
-        // logger.info("Global Similar video, videoId: " + similarVideo.getVideoId() + ", distance: "
-        // + similarVideo.getGlobalSigEucliDistance());
-        // }
         logger.info("Global similar video size: " + globalSimilarVideoList.size());
 
         if ((null == globalSimilarVideoList) || globalSimilarVideoList.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            String localSimilarVideoListStr = (new Gson()).toJson(localSimilarVideoList);
+            collector.emit(new Values(taskId, taskType, queryVideoStr, localSimilarVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -237,9 +222,8 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
 
         for (int i = 0; i < keyframeList.size(); i++) {
             KeyFrameEntity keyframeEnt  = keyframeList.get(i);
-            String         keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX
-                                          + Integer.parseInt(keyframeEnt.getVideoId()) / 100 + "/"
-                                          + keyframeEnt.getKeyFrameName();
+            String         keyframeFile = Const.CC_WEB_VIDEO.KEYFRAME_PATH_PREFIX + Integer.parseInt(keyframeEnt.getVideoId()) / 100
+                    + "/" + keyframeEnt.getKeyFrameName();
 
             try {
                 BufferedImage img  = ImageIO.read(new File(keyframeFile));
@@ -260,26 +244,21 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
 
         // 如果没有局部标签,则输出空列表
         if ((null == queryLocalSigs) || queryLocalSigs.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            String localSimilarVideoListStr = (new Gson()).toJson(localSimilarVideoList);
+            collector.emit(new Values(taskId, taskType, queryVideoStr, localSimilarVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
-        // 保存局部特征相似的视频
-        List<LocalSimilarVideo> localSimilarVideoList = new ArrayList<LocalSimilarVideo>();
-
         // 依次和视频时长在窗口内的视频比较
         for (String comparedVideoId : comparedVideoIdSet) {
-
             // 如果为检索视频本身,则跳过
             if (comparedVideoId.equals(queryVideo.getVideoId())) {
                 continue;
             }
 
             // 指定时长的视频的SIFT标签文件
-            String comparedVideoSIFTFilePath = Const.CC_WEB_VIDEO.SIFT_SIGNATURE_PATH_PREFIX
-                                               + Integer.parseInt(comparedVideoId) / 100 + "/" + comparedVideoId
-                                               + ".txt";
+            String comparedVideoSIFTFilePath = Const.CC_WEB_VIDEO.SIFT_SIGNATURE_PATH_PREFIX + Integer.parseInt(comparedVideoId) / 100
+                    + "/" + comparedVideoId + ".txt";
             File comparedVideoSIFTFile = new File(comparedVideoSIFTFilePath);
 
             if (!comparedVideoSIFTFile.exists()) {
@@ -292,7 +271,6 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
 
                 // 文件的一行代表一个compare视频
                 if (null != line) {
-
                     // compare视频的SIFT标签
                     VideoSIFTSigEntity comparedVideoLocalSig = (new Gson()).fromJson(line, VideoSIFTSigEntity.class);
 
@@ -309,7 +287,6 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
 
                     // i表示query视频的帧序号,依次将query视频的每个帧与compare视频进行比较
                     for (int i = 0; i < queryLocalSigs.size(); i++) {
-
                         // compare视频帧图像的比较窗口边界
                         int comparedFrameLeft = i - Const.STORM_CONFIG.FRAME_COMPARED_WINDOW;
 
@@ -353,13 +330,10 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
                     float localSigSimilarity = similarKeyframeNum / (float) queryLocalSigs.size();
 
                     if (localSigSimilarity >= Const.STORM_CONFIG.LOCALSIG_VIDEO_SIMILARITY_THRESHOLd) {
-                        LocalSimilarVideo localSimilarVideo = new LocalSimilarVideo(comparedVideoId,
-                                                                                    localSigSimilarity);
-
+                        LocalSimilarVideo localSimilarVideo = new LocalSimilarVideo(comparedVideoId, localSigSimilarity);
                         localSimilarVideoList.add(localSimilarVideo);
                     }
                 }
-
                 reader.close();
             } catch (FileNotFoundException e) {
                 logger.error("file not found: " + comparedVideoSIFTFilePath, e);
@@ -372,13 +346,34 @@ public class CusGlobalLocalPreRetriBolt extends BaseBasicBolt {
         logger.info("Local similar video size: " + localSimilarVideoList.size());
 
         String localSimilarVideoListStr = (new Gson()).toJson(localSimilarVideoList);
+        collector.emit(new Values(taskId, taskType, queryVideoStr, localSimilarVideoListStr, startTimeStamp, fieldGroupingId));
+    }
 
-        collector.emit(new Values(taskId,
-                                  taskType,
-                                  queryVideoStr,
-                                  localSimilarVideoListStr,
-                                  startTimeStamp,
-                                  fieldGroupingId));
+    /**
+     * Prepare.
+     *
+     * @param stormConf the storm conf
+     * @param context   the context
+     * @see backtype.storm.topology.base.BaseBasicBolt#prepare(java.util.Map, backtype.storm.task.TopologyContext) backtype.storm.topology.base.BaseBasicBolt#prepare(java.util.Map, backtype.storm.task.TopologyContext)
+     */
+    @Override
+    public void prepare(Map stormConf, TopologyContext context) {
+        super.prepare(stormConf, context);
+        VideoInfoDao          videoInfoDao  = new VideoInfoDao();
+        List<VideoInfoEntity> videoInfoList = videoInfoDao.getVideoInfoByDuration(0);    // 取出时长为0的视频(数据集中有些视频没有duration数据,我们设为0)
+        if ((null != videoInfoList) && !videoInfoList.isEmpty()) {
+            Set<String> videoIdSet = new HashSet<String>();
+            for (VideoInfoEntity videoInfoEnt : videoInfoList) {
+                videoIdSet.add(videoInfoEnt.getVideoId());
+                VideoHSVSigEntity videoHsvSig = (new HSVSignatureDao()).getVideoHSVSigById(videoInfoEnt.getVideoId());
+                // 如果数据库中没有该视频的HSV标签,则继续下一个视频
+                if (null == videoHsvSig) {
+                    continue;
+                }
+                this.cachedHSVSignature.put(videoHsvSig.getVideoId(), videoHsvSig.getSig());    // 缓存时长为0的视频的HSV全局标签
+            }
+            this.cachedVideoIdByDuration.put(0, videoIdSet);                                    // 将时长为0的视频缓存
+        }
     }
 }
 

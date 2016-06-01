@@ -112,14 +112,12 @@ public class CusRetriSpout implements IRichSpout {
                 String       taskId       = task.getTaskId();
                 String       taskType     = task.getTaskType();
                 VideoInfoDao videoInfoDao = new VideoInfoDao();
-
                 // 取出task对应的query视频id
                 List<String>    videoIdList     = task.getVideoIdList();
                 VideoInfoEntity queryVideo      = videoInfoDao.getVideoInfoById(videoIdList.get(0));
                 Gson            gson            = new Gson();
                 String          queryVideoStr   = gson.toJson(queryVideo);
                 int             fieldGroupingId = queryVideo.getDuration() / Const.STORM_CONFIG.BOLT_DURATION_WINDOW;
-
                 this.collector.emit(new Values(taskId, taskType, queryVideoStr, startTimeStamp, fieldGroupingId));
             }
 

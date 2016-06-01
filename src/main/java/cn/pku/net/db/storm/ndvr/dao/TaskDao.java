@@ -77,84 +77,6 @@ public class TaskDao {
     }
 
     /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     * @throws InterruptedException the interrupted exception
-     */
-    public static void main(String[] args) throws InterruptedException {
-
-        // retrieval
-        // int count = 1;
-        // String[] videoIds = { "1", "815", "1412", "1847", "2200", "2604", "3387", "3752", "4304",
-        // "4542", "4847", "5229", "6125", "6545", "6653", "8449", "8653", "9310", "9811",
-        // "10381", "10580", "11047", "11465", "12818" };
-        // String[] videoIds = { "1" };
-        // for (int i = 0; i < videoIds.length; i++) {
-        // TaskDao dao = new TaskDao();
-        // String taskId = Integer.toString(count);
-        // String taskType = "retrieval";
-        // List<String> videoIdList = new ArrayList<String>();
-        // videoIdList.add(videoIds[i]);
-        // TaskEntity task = new TaskEntity();
-        // task.setTaskId(taskId);
-        // task.setTaskType(taskType);
-        // task.setVideoIdList(videoIdList);
-        // task.setStatus("0");
-        // task.setTimeStamp(Long.toString(System.currentTimeMillis()));
-        // dao.insert(task);
-        // count++;
-        // }
-        // for (int i = 0; i < videoIds.length; i++) {
-        // TaskDao dao = new TaskDao();
-        // String taskId = Integer.toString(count);
-        // String taskType = "retrieval";
-        // List<String> videoIdList = new ArrayList<String>();
-        // videoIdList.add(videoIds[i]);
-        // TaskEntity task = new TaskEntity();
-        // task.setTaskId(taskId);
-        // task.setTaskType(taskType);
-        // task.setVideoIdList(videoIdList);
-        // task.setStatus("0");
-        // task.setTimeStamp(Long.toString(System.currentTimeMillis()));
-        // dao.insert(task);
-        // count++;
-        // }
-        // detection
-        List<Integer> invalidVideoId = new ArrayList<Integer>();
-
-        invalidVideoId.add(779);
-
-        int          minId       = 1;
-        int          maxId       = 100;
-        List<String> videoIdList = new ArrayList<String>();
-
-        for (int i = minId; i <= maxId; i++) {
-            if (!invalidVideoId.contains(i)) {
-                videoIdList.add(Integer.toString(i));
-            }
-        }
-
-        int taskId = 860;
-
-        for (int round = 1; round <= 20; round++) {
-            for (int i = 1; i <= 10; i++) {
-                TaskDao    dao  = new TaskDao();
-                TaskEntity task = new TaskEntity();
-
-                task.setTaskId(Integer.toString(taskId++));
-                task.setTaskType("detection");
-                task.setVideoIdList(videoIdList);
-                task.setStatus("0");
-                task.setTimeStamp(Long.toString(System.currentTimeMillis()));
-                dao.insert(task);
-            }
-
-            Thread.sleep(1000);
-        }
-    }
-
-    /**
      * Gets new detection tasks
      *
      * @return the new detection task list
@@ -286,8 +208,7 @@ public class TaskDao {
             ent.setTaskType((String) obj.get("taskType"));
 
             String       videoIdListStr  = obj.get("videoIdList").toString();
-            Type         videoIdListType = new TypeToken<List<String>>() {}
-            .getType();
+            Type         videoIdListType = new TypeToken<List<String>>() { }.getType();
             List<String> videoIdList     = (new Gson()).fromJson(videoIdListStr, videoIdListType);
 
             ent.setVideoIdList(videoIdList);
@@ -342,6 +263,72 @@ public class TaskDao {
         }
 
         return task;
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws InterruptedException the interrupted exception
+     */
+    public static void main(String[] args) throws InterruptedException {
+
+        // retrieval
+        int count = 1;
+        //String[] videoIds = {"1", "815", "1412", "1847", "2200", "2604", "3387", "3752", "4304",
+        //        "4542", "4847", "5229", "6125", "6545", "6653", "8449", "8653", "9310", "9811",
+        //        "10381", "10580", "11047", "11465", "12818"};
+        String[] videoIds = {"1"};
+        for (int n = 0; n < count; n++){
+            for (int i = 0; i < videoIds.length; i++) {
+                TaskDao dao = new TaskDao();
+                String taskId = Integer.toString(count);
+                String taskType = "retrieval";
+                List<String> videoIdList = new ArrayList<String>();
+                videoIdList.add(videoIds[i]);
+                TaskEntity task = new TaskEntity();
+                task.setTaskId(taskId);
+                task.setTaskType(taskType);
+                task.setVideoIdList(videoIdList);
+                task.setStatus("0");
+                task.setTimeStamp(Long.toString(System.currentTimeMillis()));
+                //dao.insert(task);
+                System.out.println((new Gson()).toJson(task));
+            }
+        }
+
+        // detection
+        List<Integer> invalidVideoId = new ArrayList<Integer>();
+
+        invalidVideoId.add(779);
+
+        int          minId       = 1;
+        int          maxId       = 100;
+        List<String> videoIdList = new ArrayList<String>();
+
+        for (int i = minId; i <= maxId; i++) {
+            if (!invalidVideoId.contains(i)) {
+                videoIdList.add(Integer.toString(i));
+            }
+        }
+
+        int taskId = 860;
+
+        int total_round = 1;
+        for (int round = 1; round <= total_round; round++) {
+            for (int i = 1; i <= total_round; i++) {
+                TaskDao    dao  = new TaskDao();
+                TaskEntity task = new TaskEntity();
+
+                task.setTaskId(Integer.toString(taskId++));
+                task.setTaskType("detection");
+                task.setVideoIdList(videoIdList);
+                task.setStatus("0");
+                task.setTimeStamp(Long.toString(System.currentTimeMillis()));
+                //dao.insert(task);
+                System.out.println((new Gson()).toJson(task));
+            }
+        }
     }
 }
 

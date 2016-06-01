@@ -83,7 +83,7 @@ public class CusDetecSpout implements IRichSpout {
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId", "taskType", "queryVideo1", "queryVideo2", "startTimeStamp"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo1", "queryVideo2", "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -125,21 +125,18 @@ public class CusDetecSpout implements IRichSpout {
                         videoInfoList.add(cachedVideoInfo.get(videoId));
                     } else {
                         VideoInfoEntity videoInfo = videoInfoDao.getVideoInfoById(videoId);
-
                         if (null == videoInfo) {
                             logger.info("Invalid video: " + videoId);
-
                             continue;
                         }
-
                         videoInfoList.add(videoInfo);
                         cachedVideoInfo.put(videoId, videoInfo);
                     }
                 }
 
+                // 发送待比较的视频pair
                 for (VideoInfoEntity videoInfo1 : videoInfoList) {
                     for (VideoInfoEntity videoInfo2 : videoInfoList) {
-
                         // 保证第一个视频的id小于第二个视频的id
                         if (Integer.parseInt(videoInfo1.getVideoId()) < Integer.parseInt(videoInfo2.getVideoId())) {
                             Gson   gson           = new Gson();
@@ -147,11 +144,7 @@ public class CusDetecSpout implements IRichSpout {
                             String queryVideoStr2 = gson.toJson(videoInfo2);
                             // 控制fieldGrouping,一个bolt负责一个时间段的视频,detection任务其实不需要fieldGrouping
                             int fieldGroupingId = videoInfo1.getDuration() / Const.STORM_CONFIG.BOLT_DURATION_WINDOW;
-                            collector.emit(new Values(taskId,
-                                                      taskType,
-                                                      queryVideoStr1,
-                                                      queryVideoStr2,
-                                                      startTimeStamp));
+                            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, startTimeStamp, fieldGroupingId));
                         }
                     }
                 }

@@ -71,51 +71,36 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
 
         // retrieval任务,一个query视频
         if (Const.STORM_CONFIG.RETRIEVAL_TASK_FLAG.equals(taskType)) {
+            Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}.getType();
 
-            // query视频
-            // String queryVideoInfoStr = ctrlMsg.get("queryVideo");
-            // VideoInfoEntity queryVideoInfo = (new Gson()).fromJson(queryVideoInfoStr,
-            // VideoInfoEntity.class);
             String                   similarVideoListStr  = ctrlMsg.get("globalSimilarVideoList");
-            Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}
-            .getType();
-            List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
-                                                                                  similarVideoListType);
-            TaskEntity task = new TaskEntity();
+            List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
 
+            TaskEntity task = new TaskEntity();
             task.setTaskId(taskId);
             task.setTaskType(taskType);
 
             List<String> videoIdList = new ArrayList<String>();
-
             if (null != similarVideoList) {
                 for (GlobalSimilarVideo similarVideo : similarVideoList) {
                     videoIdList.add(similarVideo.getVideoId());
                 }
             }
-
             task.setVideoIdList(videoIdList);
             task.setStatus("1");
-
             long startTimeStamp = Long.parseLong(ctrlMsg.get("startTimeStamp"));
-
             task.setTimeStamp(Long.toString(System.currentTimeMillis() - startTimeStamp));
-
             TaskResultDao taskResultDao = new TaskResultDao();
-
             taskResultDao.insert(task);
         }
         // detection任务,两个query视频
         else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)) {
             if (!taskResultMap.containsKey(taskId)) {
                 TaskEntity task = (new TaskDao()).getTaskById(taskId);
-
                 taskResultMap.put(taskId, task.getVideoIdList());
                 taskSizeMap.put(taskId, task.getVideoIdList().size());
                 taskResultComparedMap.put(taskId, 0);
-
                 long startTimeStamp = Long.parseLong(ctrlMsg.get("startTimeStamp"));
-
                 taskStartTimeStampMap.put(taskId, startTimeStamp);
             }
 
@@ -123,23 +108,19 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
             String          queryVideoStr2 = ctrlMsg.get("queryVideo2");
             VideoInfoEntity queryVideo1    = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
             VideoInfoEntity queryVideo2    = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
+            float           globalDistance  = Float.parseFloat(ctrlMsg.get("globalDistance"));
 
-            if (Float.parseFloat(ctrlMsg.get("globalDistance")) > Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD){
+            if (globalDistance > Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD){
                 List<String> videoIdList = taskResultMap.get(taskId);
                 int          index1      = videoIdList.indexOf(queryVideo1.getVideoId());
                 int          index2      = videoIdList.indexOf(queryVideo2.getVideoId());
-
                 if ((index1 == -1) || (index2 == -1)) {}
                 else if (index1 > index2) {
                     videoIdList.remove(index1);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId,
-                            index1));
+                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity", taskId, index1));
                 } else {
                     videoIdList.remove(index2);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId,
-                            index2));
+                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity", taskId, index2));
                 }
                 taskResultMap.put(taskId, videoIdList);
             }
@@ -147,21 +128,15 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
             int taskSize           = taskSizeMap.get(taskId);
             int totalComparedCount = (taskSize * (taskSize - 1));    // global visual + textual, both n(n-1)/2
             int taskResultCompared = taskResultComparedMap.get(taskId) + 1;
-
             if (totalComparedCount == taskResultCompared) {
                 TaskEntity task = new TaskEntity();
-
                 task.setTaskId(taskId);
                 task.setTaskType(taskType);
-
                 List<String> videoIdList = taskResultMap.get(taskId);
-
                 task.setVideoIdList(videoIdList);
                 task.setStatus("1");
                 task.setTimeStamp(Long.toString(System.currentTimeMillis() - taskStartTimeStampMap.get(taskId)));
-
                 TaskResultDao taskResultDao = new TaskResultDao();
-
                 taskResultDao.insert(task);
                 taskResultMap.remove(taskId);
                 taskSizeMap.remove(taskId);

@@ -127,12 +127,13 @@ public class GetTaskSpout implements IRichSpout {
                                 Gson   gson    = new Gson();
                                 String gsonStr = gson.toJson(ent1);
 
-                                ctrlMsg.put("queryVideo", gsonStr);
-                                logger.info("put queryVideo: " + gsonStr);
+                                ctrlMsg.put("queryVideo1", gsonStr);
+                                logger.info("put queryVideo1: " + gsonStr);
                                 gsonStr = gson.toJson(ent2);
                                 ctrlMsg.put("queryVideo2", gsonStr);
                                 logger.info("put queryVideo2: " + gsonStr);
 
+                                ctrlMsg.put("startTimeStamp", Long.toString(System.currentTimeMillis()));    // 记录任务开始时的时间
                                 // 控制fieldGrouping,一个bolt负责一个时间段的视频,detection任务其实不需要fieldGrouping
                                 int fieldGroupingId = ent1.getDuration() / Const.STORM_CONFIG.BOLT_DURATION_WINDOW;
 
@@ -144,7 +145,7 @@ public class GetTaskSpout implements IRichSpout {
             }
 
             try {
-                Thread.sleep(interval * 1000);
+                Thread.sleep(interval);
             } catch (InterruptedException e) {
                 logger.error("InterruptedException during thread sleep", e);
             }

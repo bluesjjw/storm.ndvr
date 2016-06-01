@@ -60,75 +60,41 @@ public class CusTextGlobalPostDetecResult extends BaseBasicBolt {
         String          queryVideoStr1 = input.getStringByField("queryVideo1");
         String          queryVideoStr2 = input.getStringByField("queryVideo2");
         long            startTimeStamp = input.getLongByField("startTimeStamp");
-        String similarType = input.getFields().get(4);
 
-        // texual similarity
-        if (similarType.equals("textSimilarity")) {
-            if (!taskResultMap.containsKey(taskId)) {
-                TaskEntity task = (new TaskDao()).getTaskById(taskId);
-                taskResultMap.put(taskId, task.getVideoIdList());
-                taskSizeMap.put(taskId, task.getVideoIdList().size());
-                taskResultComparedMap.put(taskId, 0);
-                taskStartTimeStampMap.put(taskId, startTimeStamp);
-            }
-
-            float textSimilarity = input.getFloatByField("textSimilarity");
-
-            if (textSimilarity >= Const.STORM_CONFIG.TEXT_SIMILARITY_THRESHOLD) {
-                VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
-                VideoInfoEntity queryVideo2 = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
-                List<String> videoIdList = taskResultMap.get(taskId);
-                int index1 = videoIdList.indexOf(queryVideo1.getVideoId());
-                int index2 = videoIdList.indexOf(queryVideo2.getVideoId());
-                if ((index1 == -1) || (index2 == -1)) { // remove the latter video in the result video list
-                } else if (index1 > index2) {
-                    videoIdList.remove(index1);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId, index1));
-                } else {
-                    videoIdList.remove(index2);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId, index2));
-                }
-                taskResultMap.put(taskId, videoIdList);
-            }
+        if (!taskResultMap.containsKey(taskId)) {
+            TaskEntity task = (new TaskDao()).getTaskById(taskId);
+            taskResultMap.put(taskId, task.getVideoIdList());
+            taskSizeMap.put(taskId, task.getVideoIdList().size());
+            taskResultComparedMap.put(taskId, 0);
+            taskStartTimeStampMap.put(taskId, startTimeStamp);
         }
-        // global visual signature distance
-        else if (similarType.equals("globalDistance")){
-            if (!taskResultMap.containsKey(taskId)) {
-                TaskEntity task = (new TaskDao()).getTaskById(taskId);
-                taskResultMap.put(taskId, task.getVideoIdList());
-                taskSizeMap.put(taskId, task.getVideoIdList().size());
-                taskResultComparedMap.put(taskId, 0);
-                taskStartTimeStampMap.put(taskId, startTimeStamp);
+
+        float textSimilarity = input.getFloatByField("textSimilarity");
+        float globalDistance = input.getFloatByField("globalDistance");
+
+        // both similar in textual and global visual signature
+        if (textSimilarity >= Const.STORM_CONFIG.TEXT_SIMILARITY_THRESHOLD
+                && globalDistance < Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD) {
+            VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
+            VideoInfoEntity queryVideo2 = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
+            List<String> videoIdList = taskResultMap.get(taskId);
+            int index1 = videoIdList.indexOf(queryVideo1.getVideoId());
+            int index2 = videoIdList.indexOf(queryVideo2.getVideoId());
+            if ((index1 == -1) || (index2 == -1)) { // remove the latter video in the result video list
+            } else if (index1 > index2) {
+                videoIdList.remove(index1);
+                logger.info(String.format("TaskId: %s, remove video: %s w.r.t. textual and global visual similarity",
+                        taskId, index1));
+            } else {
+                videoIdList.remove(index2);
+                logger.info(String.format("TaskId: %s, remove video: %s w.r.t. textual and global visual similarity",
+                        taskId, index2));
             }
-
-            float globalDistance = input.getFloatByField("globalDistance");
-            if (globalDistance > Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD) {
-                VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
-                VideoInfoEntity queryVideo2 = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
-                List<String> videoIdList = taskResultMap.get(taskId);
-                int          index1      = videoIdList.indexOf(queryVideo1.getVideoId());
-                int          index2      = videoIdList.indexOf(queryVideo2.getVideoId());
-
-                if ((index1 == -1) || (index2 == -1)) {}
-                else if (index1 > index2) {
-                    videoIdList.remove(index1);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId,
-                            index1));
-                } else {
-                    videoIdList.remove(index2);
-                    logger.info(String.format("TaskId: %s, remove video: %s w.r.t. global visual similarity",
-                            taskId,
-                            index2));
-                }
-
-                taskResultMap.put(taskId, videoIdList);
-            }
+            taskResultMap.put(taskId, videoIdList);
         }
+
         int taskSize           = taskSizeMap.get(taskId);
-        int totalComparedCount = (taskSize * (taskSize - 1));    // global visual + textual, both n(n-1)/2
+        int totalComparedCount = (taskSize * (taskSize - 1)) / 2;    // pair comparison count, n(n-1)/2
         int taskResultCompared = taskResultComparedMap.get(taskId) + 1;
 
         if (totalComparedCount == taskResultCompared) {

@@ -55,8 +55,7 @@ public class CusTextRetriResult extends BaseBasicBolt {
         String                 taskId               = input.getStringByField("taskId");
         String                 taskType             = input.getStringByField("taskType");
         String                 similarVideoListStr  = input.getStringByField("textSimilarVideoList");
-        Type                   similarVideoListType = new TypeToken<List<TextSimilarVideo>>() {}
-        .getType();
+        Type                   similarVideoListType = new TypeToken<List<TextSimilarVideo>>() {}.getType();
         List<TextSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
         TaskEntity             task                 = new TaskEntity();
 

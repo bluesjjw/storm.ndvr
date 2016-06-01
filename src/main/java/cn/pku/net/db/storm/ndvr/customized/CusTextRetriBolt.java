@@ -48,12 +48,7 @@ public class CusTextRetriBolt extends BaseBasicBolt {
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId",
-                                    "taskType",
-                                    "queryVideo",
-                                    "textSimilarVideoList",
-                                    "startTimeStamp",
-                                    "fieldGroupingId"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo", "textSimilarVideoList", "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -108,7 +103,6 @@ public class CusTextRetriBolt extends BaseBasicBolt {
 
         // 依次比较compare视频和query视频
         for (String comparedVideoId : comparedVideoIdSet) {
-
             // 如果为检索视频本身，则跳过
             if (comparedVideoId.equals(queryVideo.getVideoId())) {
                 continue;
@@ -121,7 +115,6 @@ public class CusTextRetriBolt extends BaseBasicBolt {
             // 如果query或者compare视频的文本信息为空,则继续比较下个视频
             if ((null == queryVideoText) || (null == comparedVideoText)) {
                 logger.info("query或者compare视频的文本信息为空: " + queryVideo.getVideoId() + " with " + comparedVideoId);
-
                 continue;
             }
 
@@ -131,63 +124,51 @@ public class CusTextRetriBolt extends BaseBasicBolt {
             // 如果query或者compare视频分词结果为空,则继续比较下个视频
             if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {
                 logger.info("query或者compare视频分词结果为空: " + queryVideo.getVideoId() + " with " + comparedVideoId);
-
                 continue;
             }
 
-            float queryVScompared = (float) 0.0;    // query与compare逐词比较的相似度
-            float comparedVSquery = (float) 0.0;    // compare与query逐词比较的相似度
-            int   sameTermNum     = 0;
-
             // 计算query与compare相同的term数量占query总term的比例
+            float queryVScompared = (float) 0.0;    // query与compare逐词比较的相似度
+            int   sameTermNum     = 0;
             for (int i = 0; i < querySplitText.size(); i++) {
                 int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
-                               ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                               : 0;
+                               ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
                 int maxIndex = (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) < comparedSplitText.size()
-                               ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                               : (comparedSplitText.size() - 1);
+                               ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : (comparedSplitText.size() - 1);
 
                 for (int j = minIndex; j < maxIndex + 1; j++) {
                     if (querySplitText.get(i).equals(comparedSplitText.get(j))) {
                         sameTermNum++;
-
                         break;
                     }
                 }
             }
-
             queryVScompared = (float) sameTermNum / (float) querySplitText.size();
 
             // 计算compare与query相同的term数量占compare总term的比例
+            float comparedVSquery = (float) 0.0;    // compare与query逐词比较的相似度
             sameTermNum = 0;
-
             for (int i = 0; i < comparedSplitText.size(); i++) {
                 int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
-                               ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                               : 0;
+                               ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
                 int maxIndex = (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) < querySplitText.size()
-                               ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW)
-                               : (querySplitText.size() - 1);
+                               ? (i + Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : (querySplitText.size() - 1);
 
                 for (int j = minIndex; j < maxIndex + 1; j++) {
                     if (comparedSplitText.get(i).equals(querySplitText.get(j))) {
                         sameTermNum++;
-
                         break;
                     }
                 }
             }
-
             comparedVSquery = (float) sameTermNum / (float) comparedSplitText.size();
 
             // 调和相似度
-            float harmonicSimilarity = queryVScompared * comparedVSquery / (queryVScompared + comparedVSquery);
+            float textSimilarity = queryVScompared * comparedVSquery / (queryVScompared + comparedVSquery);
 
             // 如果相似度大于阈值,存入相似列表
-            if (harmonicSimilarity >= Const.STORM_CONFIG.TEXT_SIMILARITY_THRESHOLD) {
-                TextSimilarVideo textSimilarVideo = new TextSimilarVideo(comparedVideoId, harmonicSimilarity);
-
+            if (textSimilarity >= Const.STORM_CONFIG.TEXT_SIMILARITY_THRESHOLD) {
+                TextSimilarVideo textSimilarVideo = new TextSimilarVideo(comparedVideoId, textSimilarity);
                 textSimilarVideoList.add(textSimilarVideo);
             }
         }
@@ -199,12 +180,7 @@ public class CusTextRetriBolt extends BaseBasicBolt {
         String textSimVideoListStr = (new Gson()).toJson(textSimilarVideoList);
 
         // bolt输出
-        collector.emit(new Values(taskId,
-                                  taskType,
-                                  queryVideoStr,
-                                  textSimVideoListStr,
-                                  startTimeStamp,
-                                  fieldGroupingId));
+        collector.emit(new Values(taskId, taskType, queryVideoStr, textSimVideoListStr, startTimeStamp, fieldGroupingId));
     }
 }
 

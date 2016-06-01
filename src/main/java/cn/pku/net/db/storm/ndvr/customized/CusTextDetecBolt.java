@@ -65,10 +65,12 @@ public class CusTextDetecBolt extends BaseBasicBolt {
         VideoInfoEntity queryVideo1 = (new Gson()).fromJson(queryVideoStr1, VideoInfoEntity.class);
         VideoInfoEntity queryVideo2 = (new Gson()).fromJson(queryVideoStr2, VideoInfoEntity.class);
 
+        float textSimilarity = (float) 0.0;
+
         // 如果两个视频duration相差太大,则文本相似度设为0,输出tuple
         if (Math.abs(queryVideo1.getDuration() - queryVideo2.getDuration())
                 > Const.STORM_CONFIG.VIDEO_DURATION_WINDOW) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, textSimilarity, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -77,7 +79,7 @@ public class CusTextDetecBolt extends BaseBasicBolt {
 
         // 如果两个query视频的文本信息为空,则文本相似度设为0,输出tuple
         if ((null == queryVideoText1) || (null == queryVideoText2)) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, textSimilarity, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -86,15 +88,13 @@ public class CusTextDetecBolt extends BaseBasicBolt {
 
         // 如果两个query视频分词结果为空,则文本相似度设为0,输出tuple
         if (querySplitText1.isEmpty() || querySplitText2.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, (float) 0.0, startTimeStamp, fieldGroupingId));
+            collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, textSimilarity, startTimeStamp, fieldGroupingId));
             return;
         }
 
-        float query1VS2   = (float) 0.0;    // query1与query2逐词比较的相似度
-        float query2VS1   = (float) 0.0;    // query2与query1逐词比较的相似度
-        int   sameTermNum = 0;
-
         // 计算query与compare相同的term数量占query总term的比例
+        float query1VS2   = (float) 0.0;    // query1与query2逐词比较的相似度
+        int   sameTermNum = 0;
         for (int i = 0; i < querySplitText1.size(); i++) {
             int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
                            ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
@@ -108,12 +108,11 @@ public class CusTextDetecBolt extends BaseBasicBolt {
                 }
             }
         }
-
         query1VS2 = sameTermNum / (float) querySplitText1.size();
 
         // 计算compare与query相同的term数量占compare总term的比例
+        float query2VS1   = (float) 0.0;    // query2与query1逐词比较的相似度
         sameTermNum = 0;
-
         for (int i = 0; i < querySplitText2.size(); i++) {
             int minIndex = (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) >= 0
                            ? (i - Const.STORM_CONFIG.TEXT_COMPARED_WINDOW) : 0;
@@ -126,20 +125,19 @@ public class CusTextDetecBolt extends BaseBasicBolt {
                 }
             }
         }
-
         query2VS1 = sameTermNum / (float) querySplitText2.size();
 
         // 调和相似度
-        float harmonicSimilarity = (float) 0.0;
+        textSimilarity = (float) 0.0;
 
         if ((query1VS2 == 0) || (query2VS1 == 0)) {
-            harmonicSimilarity = 0;
+            textSimilarity = 0;
         } else {
-            harmonicSimilarity = query1VS2 * query2VS1 / (query1VS2 + query2VS1);
+            textSimilarity = query1VS2 * query2VS1 / (query1VS2 + query2VS1);
         }
 
         // 放入文本相似度,输出
-        collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, harmonicSimilarity, startTimeStamp, fieldGroupingId));
+        collector.emit(new Values(taskId, taskType, queryVideoStr1, queryVideoStr2, textSimilarity, startTimeStamp, fieldGroupingId));
     }
 }
 

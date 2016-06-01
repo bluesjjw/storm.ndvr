@@ -54,9 +54,8 @@ public class CusGlobalLocalPreRetriResult extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
         String                  taskId               = input.getStringByField("taskId");
         String                  taskType             = input.getStringByField("taskType");
-        String                  similarVideoListStr  = input.getStringByField("similarVideoList");
-        Type                    similarVideoListType = new TypeToken<List<LocalSimilarVideo>>() {}
-        .getType();
+        String                  similarVideoListStr  = input.getStringByField("localSimilarVideoList");
+        Type                    similarVideoListType = new TypeToken<List<LocalSimilarVideo>>() {}.getType();
         List<LocalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
         TaskEntity              task                 = new TaskEntity();
 

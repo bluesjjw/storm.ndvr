@@ -20,7 +20,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import cn.pku.net.db.storm.ndvr.general.TextSimilarityBolt;
+import cn.pku.net.db.storm.ndvr.general.TextSimilarBolt;
+import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 
@@ -235,8 +236,8 @@ public class TestThread implements Runnable {
                 }
 
                 // logger.info("Compare " + queryVideoText + " with " + comparedVideoText);
-                List<String> querySplitText    = TextSimilarityBolt.getSplitText(queryVideoText);
-                List<String> comparedSplitText = TextSimilarityBolt.getSplitText(comparedVideoText);
+                List<String> querySplitText    = MyStringUtils.wordSegment(queryVideoText);
+                List<String> comparedSplitText = MyStringUtils.wordSegment(comparedVideoText);
 
                 // 如果query或者compare视频分词结果为空,则继续比较下个视频
                 if (querySplitText.isEmpty() || comparedSplitText.isEmpty()) {
@@ -346,8 +347,8 @@ public class TestThread implements Runnable {
                 return;
             }
 
-            List<String> querySplitText  = TextSimilarityBolt.getSplitText(queryVideoText);
-            List<String> query2SplitText = TextSimilarityBolt.getSplitText(queryVideoText2);
+            List<String> querySplitText  = MyStringUtils.wordSegment(queryVideoText);
+            List<String> query2SplitText = MyStringUtils.wordSegment(queryVideoText2);
 
             // 如果两个query视频分词结果为空,则文本相似度设为0,
             if (querySplitText.isEmpty() || query2SplitText.isEmpty()) {

@@ -55,10 +55,8 @@ public class CusTextGlobalPreRetriResult extends BaseBasicBolt {
         String                   taskId               = input.getStringByField("taskId");
         String                   taskType             = input.getStringByField("taskType");
         String                   similarVideoListStr  = input.getStringByField("similarVideoList");
-        Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}
-        .getType();
-        List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr,
-                                                                              similarVideoListType);
+        Type                     similarVideoListType = new TypeToken<List<GlobalSimilarVideo>>() {}.getType();
+        List<GlobalSimilarVideo> similarVideoList     = (new Gson()).fromJson(similarVideoListStr, similarVideoListType);
         TaskEntity               task                 = new TaskEntity();
 
         task.setTaskId(taskId);

@@ -62,8 +62,8 @@ public class CusTextDetecResult extends BaseBasicBolt {
         String queryVideoStr1 = input.getStringByField("queryVideo1");
         String queryVideoStr2 = input.getStringByField("queryVideo2");
         float  textSimilarity = input.getFloatByField("textSimilarity");
-        long startTimeStamp = input.getLongByField("startTimeStamp");
-        int                 fieldGroupingId = input.getIntegerByField("fieldGroupingId");
+        long   startTimeStamp = input.getLongByField("startTimeStamp");
+        int   fieldGroupingId = input.getIntegerByField("fieldGroupingId");
 
         if (!taskResultMap.containsKey(taskId)) {   // insert new item into taskResultMap
             TaskEntity task = (new TaskDao()).getTaskById(taskId);

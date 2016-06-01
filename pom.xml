@@ -104,7 +104,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>CustomizedTopologyMain</mainClass>
+							<mainClass>cn.pku.net.db.storm.ndvr.general.TopologyMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

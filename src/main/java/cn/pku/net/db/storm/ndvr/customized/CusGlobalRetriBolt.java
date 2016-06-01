@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import backtype.storm.task.TopologyContext;
 import cn.pku.net.db.storm.ndvr.util.SigSim;
 import org.apache.log4j.Logger;
 
@@ -53,18 +54,40 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
     private static Map<String, HSVSigEntity> cachedHSVSignature = new ConcurrentHashMap<String, HSVSigEntity>();    // 缓存视频的HSV全局标签,key为视频id,value为视频HSV全局标签
 
     /**
+     * Prepare.
+     *
+     * @param stormConf the storm conf
+     * @param context   the context
+     * @see backtype.storm.topology.base.BaseBasicBolt#prepare(java.util.Map, backtype.storm.task.TopologyContext) backtype.storm.topology.base.BaseBasicBolt#prepare(java.util.Map, backtype.storm.task.TopologyContext)
+     */
+    @Override
+    public void prepare(Map stormConf, TopologyContext context) {
+        super.prepare(stormConf, context);
+        VideoInfoDao          videoInfoDao  = new VideoInfoDao();
+        List<VideoInfoEntity> videoInfoList = videoInfoDao.getVideoInfoByDuration(0);    // 取出时长为0的视频(数据集中有些视频没有duration数据,我们设为0)
+        if ((null != videoInfoList) && !videoInfoList.isEmpty()) {
+            Set<String> videoIdSet = new HashSet<String>();
+            for (VideoInfoEntity videoInfoEnt : videoInfoList) {
+                videoIdSet.add(videoInfoEnt.getVideoId());
+                VideoHSVSigEntity videoHsvSig = (new HSVSignatureDao()).getVideoHSVSigById(videoInfoEnt.getVideoId());
+                // 如果数据库中没有该视频的HSV标签,则继续下一个视频
+                if (null == videoHsvSig) {
+                    continue;
+                }
+                this.cachedHSVSignature.put(videoHsvSig.getVideoId(), videoHsvSig.getSig());    // 缓存时长为0的视频的HSV全局标签
+            }
+            this.cachedVideoIdByDuration.put(0, videoIdSet);                                    // 将时长为0的视频缓存
+        }
+    }
+
+    /**
      * Declare output fields.
      *
      * @param declarer the declarer
      * @see backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer) backtype.storm.topology.IComponent#declareOutputFields(backtype.storm.topology.OutputFieldsDeclarer)
      */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("taskId",
-                                    "taskType",
-                                    "queryVideo",
-                                    "globalSimilarVideoList",
-                                    "startTimeStamp",
-                                    "fieldGroupingId"));
+        declarer.declare(new Fields("taskId", "taskType", "queryVideo", "globalSimilarVideoList", "startTimeStamp", "fieldGroupingId"));
     }
 
     /**
@@ -83,10 +106,14 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
         VideoInfoEntity      queryVideo      = (new Gson()).fromJson(queryVideoStr, VideoInfoEntity.class);
         List<KeyFrameEntity> keyframeList    = (new KeyFrameDao()).getKeyFrameByVideoId(queryVideo.getVideoId());
 
+        // 输出结果,保存全局标签相似的视频
+        List<GlobalSimilarVideo> globalSimilarVideoList = new ArrayList<GlobalSimilarVideo>();
+
         // 如果该视频没有对应的关键帧信息,则将全局标签设为null并输出
         if ((null == keyframeList) || keyframeList.isEmpty()) {
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            String globalSimVideoListStr = (new Gson()).toJson(globalSimilarVideoList);
+            // bolt输出
+            collector.emit(new Values(taskId, taskType, queryVideoStr, globalSimVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -96,15 +123,11 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
         HSVSigEntity      queryHsvSignature = GlobalSigGenerator.generate(keyframeList);
         VideoHSVSigEntity queryVideoHsvSig  = new VideoHSVSigEntity(queryVideo.getVideoId(), queryHsvSignature);
 
-        // 输出结果,保存相似的视频
-        List<GlobalSimilarVideo> globalSimilarVideoList = new ArrayList<GlobalSimilarVideo>();
-
         // 如果query全局标签为空,则输出空列表
         if ((null == queryVideoHsvSig) || (null == queryVideoHsvSig.getSig())) {
-
+            String globalSimVideoListStr = (new Gson()).toJson(globalSimilarVideoList);
             // bolt输出
-            collector.emit(new Values(taskId, taskType, queryVideoStr, null, startTimeStamp, fieldGroupingId));
-
+            collector.emit(new Values(taskId, taskType, queryVideoStr, globalSimVideoListStr, startTimeStamp, fieldGroupingId));
             return;
         }
 
@@ -124,7 +147,6 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
         int videoDurationWindowMax = queryVideoDuration + Const.STORM_CONFIG.VIDEO_DURATION_WINDOW;
 
         for (int duration = videoDurationWindowMin; duration <= videoDurationWindowMax; duration++) {
-
             // 如果cache中没有对应时长的视频,则查询数据库
             if (!this.cachedVideoIdByDuration.containsKey(duration)) {
                 List<VideoInfoEntity> videoInfosByDuration = (new VideoInfoDao()).getVideoInfoByDuration(duration);
@@ -135,7 +157,6 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
                 }
 
                 if (videoIdSet.isEmpty()) {
-
                     // 存入cache
                     this.cachedVideoIdByDuration.put(duration, videoIdSet);
                     logger.info("Cache duration:" + duration + ", size:" + videoIdSet.size());
@@ -144,17 +165,14 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
                 // 存入待比较视频列表
                 comparedVideoIdSet.addAll(videoIdSet);
             }
-
             // 如果cache中有对应时长的视频,则直接查询内存的Map
             else {
                 comparedVideoIdSet.addAll(this.cachedVideoIdByDuration.get(duration));
             }
         }
 
-        // logger.info("Compared video size: " + comparedVideoIdSet.size());
         // 依次比较compare视频和query视频
         for (String comparedVideoId : comparedVideoIdSet) {
-
             // 如果为检索视频本身，则跳过
             if (comparedVideoId.equals(queryVideo.getVideoId())) {
                 continue;
@@ -169,27 +187,18 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
                 // 如果数据库中没有视频对应的全局标签,则处理下个待比较的视频
                 if (null == comparedVideoHsvSig) {
                     logger.info("During comparing, no signature found in database, videoId: " + comparedVideoId);
-
                     continue;
                 }
 
                 this.cachedHSVSignature.put(comparedVideoId, comparedVideoHsvSig.getSig());
-
-                // logger.info("cache hsv signature, videoId: "
-                // + comparedVideoId + ", duration: "
-                // + duration);
             }
-
             // 如果缓存中有compare视频的HSV标签,则查询缓存
             else {
                 comparedVideoHsvSig = new VideoHSVSigEntity(comparedVideoId, cachedHSVSignature.get(comparedVideoId));
             }
 
-            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(),
-                                                                                       comparedVideoHsvSig.getSig());
+            float euclideanDistance = SigSim.getEuclideanDistance(queryVideoHsvSig.getSig(), comparedVideoHsvSig.getSig());
 
-            // logger.info("EuclideanDistance: " + euclideanDistance + ", queryVideoId: "
-            // + queryVideo.getVideoId() + ", comparedVideoId: " + comparedVideoId);
             if (euclideanDistance <= Const.STORM_CONFIG.GLOBALSIG_EUCLIDEAN_THRESHOLD) {
                 globalSimilarVideoList.add(new GlobalSimilarVideo(comparedVideoId, euclideanDistance));
             }
@@ -199,19 +208,15 @@ public class CusGlobalRetriBolt extends BaseBasicBolt {
         // logger.info("Global Similar video, videoId: " + similarVideo.getVideoId() + ", distance: "
         // + similarVideo.getGlobalSigEucliDistance());
         // }
+
         // 按照距离从小到大进行排序
         Collections.sort(globalSimilarVideoList, new GlobalSimilarVideo());
 
         // 在控制信息中加入相似视频列表,有可能为空!
-        // logger.info("Global similar video size: " + globalSimilarVideoList.size());
+        logger.info("Global similar video size: " + globalSimilarVideoList.size());
         String globalSimVideoListStr = (new Gson()).toJson(globalSimilarVideoList);
 
-        collector.emit(new Values(taskId,
-                                  taskType,
-                                  queryVideoStr,
-                                  globalSimVideoListStr,
-                                  startTimeStamp,
-                                  fieldGroupingId));
+        collector.emit(new Values(taskId, taskType, queryVideoStr, globalSimVideoListStr, startTimeStamp, fieldGroupingId));
     }
 }
 
