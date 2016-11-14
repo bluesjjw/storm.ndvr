@@ -97,10 +97,11 @@ public class GlobalSigSimilarBolt extends BaseBasicBolt {
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
         String taskId = input.getStringByField("taskId");
-        logger.info("Global signature distance, taskId: " + taskId);
+        //logger.info("Global signature distance, taskId: " + taskId);
         String              taskType        = input.getStringByField("taskType");
         int                 fieldGroupingId = input.getIntegerByField("fieldGroupingId");
         Map<String, String> ctrlMsg         = (Map<String, String>) input.getValue(3);    // 控制信息
+        long startTime = System.currentTimeMillis();
 
         // retrieval任务,一个query视频
         if (Const.STORM_CONFIG.RETRIEVAL_TASK_FLAG.equals(taskType)) {
@@ -210,6 +211,8 @@ public class GlobalSigSimilarBolt extends BaseBasicBolt {
             ctrlMsg.put("globalSimilarVideoList", globalSimVideoListStr);
             // 移除不必要的key
             ctrlMsg = StreamSharedMessage.discardInvalidKey("GlobalSigSimilarBolt", ctrlMsg);
+            // time cost in this bolt
+            logger.info(String.format("GlobalSigSimilarBolt cost %d ms", (System.currentTimeMillis() - startTime)));
             // bolt输出
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
             //logger.info(String.format("Control message size in local feature distance: %d, taskId: %s",

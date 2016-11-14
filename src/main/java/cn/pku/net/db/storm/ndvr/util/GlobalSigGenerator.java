@@ -32,7 +32,8 @@ import cn.pku.net.db.storm.ndvr.entity.KeyFrameEntity;
 /**
  * Description: Generate global visual signature
  *
- * @author jeremyjiang Created at 2016/5/12 16:58
+ * @author jeremyjiang
+ * Created at 2016/5/12 16:58
  */
 public class GlobalSigGenerator {
     private static final Logger logger = Logger.getLogger(GlobalSigGenerator.class);

@@ -72,6 +72,15 @@ public class HSVSigEntity {
         this.bin24 = Float.valueOf(lines[24]);
     }
 
+    public float[] getBins(){
+        float[] bins = {this.bin1, this.bin2, this.bin3, this.bin4, this.bin5
+                , this.bin6, this.bin7, this.bin8, this.bin9, this.bin10, this.bin11
+                , this.bin12, this.bin13, this.bin14, this.bin15, this.bin16, this.bin17
+                , this.bin18, this.bin19, this.bin20, this.bin21, this.bin22, this.bin23
+                , this.bin24};
+        return bins;
+    }
+
     /**
      * Instantiates a new Hsv sig entity.
      *

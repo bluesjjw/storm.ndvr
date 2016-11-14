@@ -91,10 +91,11 @@ public class GlobalSigBolt extends BaseBasicBolt {
      */
     public void execute(Tuple input, BasicOutputCollector collector) {
         String taskId = input.getStringByField("taskId");
-        logger.info("Global feature, taskId: " + taskId);
+        //logger.info("Global feature, taskId: " + taskId);
         String taskType = input.getStringByField("taskType");
         int fieldGroupingId = input.getIntegerByField("fieldGroupingId");
         Map<String, String> ctrlMsg = (Map<String, String>) input.getValue(3); //控制信息
+        long startTime = System.currentTimeMillis();
 
         //retrieval任务,一个query视频
         if (Const.STORM_CONFIG.RETRIEVAL_TASK_FLAG.equals(taskType)) {
@@ -132,10 +133,10 @@ public class GlobalSigBolt extends BaseBasicBolt {
             if (Const.SSM_CONFIG.IS_REDUCTIION) {
                 ctrlMsg = StreamSharedMessage.discardInvalidKey("GlobalSigBolt", ctrlMsg);
             }
+            // time cost in this bolt
+            logger.info(String.format("GlobalSigBolt cost %d ms", (System.currentTimeMillis() - startTime)));
             //以duration做fieldGrouping, 一个bolt负责的时长范围为Const.STORM_CONFIG.BOLT_DURATION_WINDOW
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
-            //logger.info(String.format("Control message size in GlobalSigBolt: %d, taskId: %s",
-            //        calMsgLength(ctrlMsg), taskId));
         }
         //detection任务,两个query视频
         else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)) {
@@ -254,17 +255,5 @@ public class GlobalSigBolt extends BaseBasicBolt {
             msgLength += entry.getKey().length() + entry.getValue().length();
         }
         return msgLength;
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        List<KeyFrameEntity> keyframeList = (new KeyFrameDao()).getKeyFrameByVideoId("1");
-        Collections.sort(keyframeList, new KeyFrameEntity());
-        String keyframeListStr = (new Gson()).toJson(keyframeList);
-        System.out.println(keyframeListStr);
     }
 }

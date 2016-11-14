@@ -23,12 +23,7 @@ import cn.pku.net.db.storm.ndvr.entity.VideoInfoEntity;
 import cn.pku.net.db.storm.ndvr.util.MyStringUtils;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -88,10 +83,11 @@ public class TextSimilarBolt extends BaseBasicBolt {
      */
     public void execute(Tuple input, BasicOutputCollector collector) {
         String taskId = input.getStringByField("taskId");
-        logger.info("Text similarity, taskId: " + taskId);
+        //logger.info("Text similarity, taskId: " + taskId);
         String              taskType        = input.getStringByField("taskType");
         int                 fieldGroupingId = input.getIntegerByField("fieldGroupingId");
         Map<String, String> ctrlMsg         = (Map<String, String>) input.getValue(3);    // 控制信息
+        long startTime = System.currentTimeMillis();
 
         // retrieval任务,一个query视频
         if (Const.STORM_CONFIG.RETRIEVAL_TASK_FLAG.equals(taskType)) {
@@ -224,10 +220,10 @@ public class TextSimilarBolt extends BaseBasicBolt {
             ctrlMsg.put("textSimilarVideoList", (new Gson()).toJson(textSimilarVideoList));
             // 移除不必要的key
             ctrlMsg = StreamSharedMessage.discardInvalidKey("TextSimilarBolt", ctrlMsg);
+            // time cost in this bolt
+            logger.info(String.format("TextSimilarBolt cost %d ms", (System.currentTimeMillis() - startTime)));
             // bolt输出, 监控SSM大小
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
-            //logger.info(String.format("Control message size in textual feature distance: %d, taskId: %s",
-            //        StreamSharedMessage.calMsgLength(ctrlMsg), taskId));
         }
         // detection task,两个视频,比较它们的相似度
         else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)) {
@@ -308,29 +304,6 @@ public class TextSimilarBolt extends BaseBasicBolt {
             collector.emit(new Values(taskId, taskType, fieldGroupingId, ctrlMsg));
             //logger.info(String.format("Control message size in textual feature distance: %d, taskId: %s",
             //        StreamSharedMessage.calMsgLength(ctrlMsg), taskId));
-        }
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        try {
-            VideoInfoEntity videoInfo = (new VideoInfoDao()).getVideoInfoById("9311");
-            String          text      = videoInfo.getTitle();
-            StringReader    sr        = new StringReader(text);
-            IKSegmenter     ik        = new IKSegmenter(sr, true);
-            Lexeme          lex       = null;
-
-            while ((lex = ik.next()) != null) {
-                System.out.print(lex.getLexemeText() + "|");
-            }
-        } catch (FileNotFoundException e) {
-            logger.error("", e);
-        } catch (IOException e) {
-            logger.error("", e);
         }
     }
 }

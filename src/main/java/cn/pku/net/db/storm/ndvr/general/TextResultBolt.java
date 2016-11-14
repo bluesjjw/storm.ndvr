@@ -145,17 +145,10 @@ public class TextResultBolt extends BaseBasicBolt {
                 taskStartTimeStampMap.remove(taskId);
             } else {
                 taskResultComparedMap.put(taskId, taskResultCompared);
-                logger.info("Compared video pair: " + taskResultCompared);
+                //logger.info("Compared video pair: " + taskResultCompared);
             }
         }
     }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {}
 }
 
 

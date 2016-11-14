@@ -68,6 +68,7 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
         String              taskType        = input.getStringByField("taskType");
         int                 fieldGroupingId = input.getIntegerByField("fieldGroupingId");
         Map<String, String> ctrlMsg         = (Map<String, String>) input.getValue(3);    // 控制信息
+        long startTime = System.currentTimeMillis();
 
         // retrieval任务,一个query视频
         if (Const.STORM_CONFIG.RETRIEVAL_TASK_FLAG.equals(taskType)) {
@@ -92,6 +93,8 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
             task.setTimeStamp(Long.toString(System.currentTimeMillis() - startTimeStamp));
             TaskResultDao taskResultDao = new TaskResultDao();
             taskResultDao.insert(task);
+            // time cost in this bolt
+            logger.info(String.format("TextGlobalPreResult cost %d ms", (System.currentTimeMillis() - startTime)));
         }
         // detection任务,两个query视频
         else if (Const.STORM_CONFIG.DETECTION_TASK_FLAG.equals(taskType)) {
@@ -148,13 +151,6 @@ public class TextGlobalPreResultBolt extends BaseBasicBolt {
             }
         }
     }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {}
 }
 
 
